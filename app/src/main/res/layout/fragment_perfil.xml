@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PerfilFragment">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:padding="30dp"
+           android:background="@android:color/white"
+           android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               >
+               <de.hdodenhof.circleimageview.CircleImageView
+                   android:layout_width="130dp"
+                   android:layout_height="130dp"
+                   android:src="@drawable/loren"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:textSize="16dp"
+                   android:textColor="@android:color/black"
+                   android:textStyle="bold"
+                   android:text="Loren Trindade"/>
+           </LinearLayout>
+           <View
+               android:layout_marginTop="30dp"
+               android:layout_height="2dp"
+               android:layout_width="fill_parent"
+               android:background="#E9E4E4" />
+
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="20dp"
+               app:cardElevation="5dp"
+               >
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="horizontal"
+                   android:layout_marginLeft="5dp"
+                   android:layout_marginRight="60dp"
+                   >
+                   <EditText
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:hint="Pesquise aqui"/>
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="horizontal"
+                   android:gravity="end"
+                   >
+
+                   <ImageButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_lupa_gray"
+                       android:background="@android:color/transparent"
+                       android:layout_gravity="center_vertical"
+                       />
+               </LinearLayout>
+           </androidx.cardview.widget.CardView>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="30dp"
+               >
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/circleImageView2"
+                       android:layout_width="80dp"
+                       android:layout_height="60dp"
+                       android:background="@drawable/ic_tres_barrinhas"
+                       android:src="@color/corBotaoVemerlho"
+                       app:civ_border_overlay="true"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_tres_barrinhas"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="@+id/circleImageView2"
+                       app:layout_constraintTop_toTopOf="@+id/circleImageView2" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_marginLeft="15dp"
+                   >
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:gravity="center_vertical"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@android:color/black"
+                       android:textStyle="bold"
+                       android:textSize="18dp"
+                       android:text="Atualizar dados pessoais"/>
+                   <View
+
+                       android:layout_height="2dp"
+                       android:layout_width="fill_parent"
+                       android:background="#E9E4E4" />
+
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="20dp"
+               >
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/circleImageView3"
+                       android:layout_width="80dp"
+                       android:layout_height="60dp"
+                       android:src="@color/corBotaoVemerlho"
+                       app:civ_border_overlay="true"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_carro"
+                       app:layout_constraintBottom_toBottomOf="@+id/circleImageView3"
+                       app:layout_constraintEnd_toEndOf="@+id/circleImageView3"
+                       app:layout_constraintStart_toStartOf="@+id/circleImageView3"
+                       app:layout_constraintTop_toTopOf="@+id/circleImageView3" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_marginLeft="15dp"
+                   >
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:gravity="center_vertical"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@android:color/black"
+                       android:textStyle="bold"
+                       android:textSize="18dp"
+                       android:text="Atualizar dados veículo"/>
+                   <View
+
+                       android:layout_height="2dp"
+                       android:layout_width="fill_parent"
+                       android:background="#E9E4E4" />
+
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="20dp"
+               >
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/circleImageView4"
+                       android:layout_width="80dp"
+                       android:layout_height="60dp"
+                       android:src="@color/corBotaoVemerlho"
+                       app:civ_border_overlay="true"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_configuracoes"
+                       app:layout_constraintBottom_toBottomOf="@+id/circleImageView4"
+                       app:layout_constraintEnd_toEndOf="@+id/circleImageView4"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="@+id/circleImageView4" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_marginLeft="15dp"
+                   >
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:gravity="center_vertical"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@android:color/black"
+                       android:textStyle="bold"
+                       android:textSize="18dp"
+                       android:text="Configurações"/>
+                   <View
+
+                       android:layout_height="2dp"
+                       android:layout_width="fill_parent"
+                       android:background="#E9E4E4" />
+
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="20dp"
+               >
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/circleImageView"
+                       android:layout_width="80dp"
+                       android:layout_height="60dp"
+                       android:src="@color/corBotaoVemerlho"
+                       app:civ_border_overlay="true"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.0"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintVertical_bias="0.0" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_help"
+                       app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="@+id/circleImageView"
+                       app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_marginLeft="15dp"
+                   >
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:gravity="center_vertical"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@android:color/black"
+                       android:textStyle="bold"
+                       android:textSize="18dp"
+                       android:text="Ajuda"/>
+                   <View
+
+                       android:layout_height="2dp"
+                       android:layout_width="fill_parent"
+                       android:background="#E9E4E4" />
+
+               </LinearLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="20dp"
+               >
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/circleImageView5"
+                       android:layout_width="80dp"
+                       android:layout_height="60dp"
+                       android:src="@color/corBotaoVemerlho"
+                       app:civ_border_overlay="true"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.0"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintVertical_bias="0.0" />
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_sobre"
+                       app:layout_constraintBottom_toBottomOf="@+id/circleImageView5"
+                       app:layout_constraintEnd_toEndOf="@+id/circleImageView5"
+                       app:layout_constraintStart_toStartOf="@+id/circleImageView5"
+                       app:layout_constraintTop_toTopOf="@+id/circleImageView5" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:layout_marginLeft="15dp"
+                   >
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:gravity="center_vertical"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@android:color/black"
+                       android:textStyle="bold"
+                       android:textSize="18dp"
+                       android:text="Sobre a Motor Place"/>
+                   <View
+                       android:layout_height="2dp"
+                       android:layout_width="fill_parent"
+                       android:background="#E9E4E4" />
+
+               </LinearLayout>
+           </LinearLayout>
+       </LinearLayout>
+   </ScrollView>
+</FrameLayout>

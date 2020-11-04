@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".activitys.TelaDeLogin">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="398dp"
+        android:layout_height="213dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logomotor" />
+
+    <EditText
+        android:id="@+id/editTextSenhaL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@android:dimen/app_icon_size"
+        android:layout_marginLeft="@android:dimen/app_icon_size"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@android:dimen/app_icon_size"
+        android:layout_marginRight="@android:dimen/app_icon_size"
+        android:backgroundTint="#c31423"
+        android:drawableLeft="@drawable/cadeado_senha"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailL" />
+
+    <EditText
+        android:id="@+id/editTextEmailL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@android:dimen/app_icon_size"
+        android:layout_marginLeft="@android:dimen/app_icon_size"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@android:dimen/app_icon_size"
+        android:layout_marginRight="@android:dimen/app_icon_size"
+        android:backgroundTint="#c31423"
+        android:drawableLeft="@drawable/pessoa_email"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/editTextSenhaL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="287dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="@android:dimen/app_icon_size"
+        android:layout_marginLeft="@android:dimen/app_icon_size"
+        android:layout_marginEnd="@android:dimen/app_icon_size"
+        android:layout_marginRight="@android:dimen/app_icon_size"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/shape"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnResetSenha"
+        android:layout_width="123dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="12dp"
+        android:background="#ffffff"
+        android:fontFamily="sans-serif"
+        android:text="Redefinir senha"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenhaL" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

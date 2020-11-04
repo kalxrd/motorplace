@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_pesquisar"
+        android:icon="@drawable/ic_lupa"
+        android:title="Pesquisar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_resposta"
+        android:icon="@drawable/ic_carrinho"
+        android:title="Carrinho"
+        app:showAsAction="ifRoom"/>
+</menu>

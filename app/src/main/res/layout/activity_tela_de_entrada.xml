@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activitys.TelaDeEntradaActivity">
+
+    <!-- Parte de cima da tela -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:background="@drawable/button_dgd_preto"
+        >
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logomotor" />
+
+    </LinearLayout>
+      <!-- Botão Login
+        margin - organiza os lados do botão
+        allcaps - deixa a letra minuscula -->
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_degrade"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="50dp"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            />
+    <!-- Botão Cadastra-se -->
+          <Button
+              android:id="@+id/btn_cadastrar"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/button_radius"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginLeft="70dp"
+              android:layout_marginRight="70dp"
+              android:layout_marginTop="30dp"
+              android:text="Cadastrar-se"
+              android:textAllCaps="false"
+              android:textColor="#C21500"
+              android:textSize="20dp"
+              />
+    <!-- Botão Facebook -->
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/button_redesocial"
+              android:backgroundTint="#3B5998"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginLeft="100dp"
+              android:layout_marginRight="100dp"
+              android:layout_marginTop="50dp"
+              android:text="Entrar com"
+              android:textAllCaps="false"
+              android:textColor="#ffffff"
+              android:textSize="15dp"
+              android:drawableStart="@drawable/ic_facebook"
+              android:paddingLeft="24dp"
+              />
+    <!-- Botão Google -->
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/button_redesocial"
+              android:backgroundTint="#2196F3"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginLeft="100dp"
+              android:layout_marginRight="100dp"
+              android:layout_marginTop="10dp"
+              android:text="Entrar com"
+              android:textAllCaps="false"
+              android:textColor="#ffffff"
+              android:textSize="15dp"
+              android:drawableStart="@drawable/ic_google"
+              android:paddingLeft="25dp"
+              />
+
+
+
+  </LinearLayout>
+
