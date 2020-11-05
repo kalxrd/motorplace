@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
     <color name="corBotaoVemerlho">#7C170E</color>
+
+    <color name="step">#454141</color>
 </resources>

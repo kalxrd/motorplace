@@ -152,7 +152,7 @@
                    <ImageView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:src="@drawable/ic_carro"
+                       android:src="@drawable/ic_carro_white"
                        app:layout_constraintBottom_toBottomOf="@+id/circleImageView3"
                        app:layout_constraintEnd_toEndOf="@+id/circleImageView3"
                        app:layout_constraintStart_toStartOf="@+id/circleImageView3"
@@ -290,6 +290,7 @@
                </LinearLayout>
            </LinearLayout>
            <LinearLayout
+               android:id="@+id/btn_deslogar"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="horizontal"

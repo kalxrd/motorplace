@@ -9,15 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activitys.AtualizarDadosActivity"></activity>
         <activity
             android:name=".activitys.TelaRecuperarSenha"
-            android:parentActivityName=".activitys.TelaDeLogin"
-            />
+            android:parentActivityName=".activitys.TelaDeLogin" />
         <activity android:name=".activitys.TelaHomeAdm" />
-        <activity android:name=".activitys.TelaHomeCliente" android:theme="@style/appbar"/>
         <activity
-            android:name=".activitys.TelaCadastroCarro"
-            android:parentActivityName=".activitys.TelaCadastroUsuario" />
+            android:name=".activitys.TelaHomeCliente"
+            android:theme="@style/appbar" />
         <activity
             android:name=".activitys.TelaCadastroUsuario"
             android:parentActivityName=".activitys.TelaDeEntradaActivity" />
