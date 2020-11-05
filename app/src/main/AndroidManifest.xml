@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.motorplace">
+    <!-- permissoes para uso dos recursos da camera e galeria -->
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -9,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.AtualizarDadosActivity"></activity>
+        <activity android:name=".activitys.AtualizarDadosActivity" android:parentActivityName=".activitys.TelaHomeCliente"></activity>
         <activity
             android:name=".activitys.TelaRecuperarSenha"
             android:parentActivityName=".activitys.TelaDeLogin" />

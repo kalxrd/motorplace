@@ -1,9 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activitys.AtualizarDadosActivity">
+    <LinearLayout
+        android:id="@+id/step1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:padding="32dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imagem_perfil_editar"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/user_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <ProgressBar
+                    android:id="@+id/progressImage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:indeterminate="true"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imagem_perfil_editar"
+                    app:layout_constraintStart_toStartOf="@+id/imagem_perfil_editar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/alterar_imagem"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:text="Alterar Foto"/>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint="Nome Completo"
+            android:textColorHint="#000000"
+            >
+            <EditText
+                android:id="@+id/txt_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawableLeft="@drawable/pessoa_email"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:hint="CPF"
+            android:textColorHint="#000000"
+            >
+            <EditText
+                android:id="@+id/txt_cpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawableLeft="@drawable/cpf"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="phone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:textColorHint="#000000"
+            android:hint="Telefone"
+            >
+            <EditText
+                android:id="@+id/txt_telefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawableLeft="@drawable/ic_telefone"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="phone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:hint="Email"
+            android:textColorHint="@android:color/black"
+            >
+            <EditText
+                android:id="@+id/txt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:enabled="false"
+                android:drawableLeft="@drawable/email_cad"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000"
+                android:textColorLink="#FFFFFF"
+                android:textColorHint="#000000"
+                android:text="Email"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:textColorHint="#000000"
+            android:hint="Data de Nascimento"
+            >
+            <EditText
+                android:id="@+id/txt_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawableLeft="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="date"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="60dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_radius"
+                android:text="Cancelar"
+                android:textAllCaps="false"
+                android:textColor="#C21500"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_salvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:text="Salvar"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
