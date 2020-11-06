@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.motorplace.R
+import com.example.motorplace.activitys.AtualizarCarroActivity
 import com.example.motorplace.activitys.AtualizarDadosActivity
 import com.example.motorplace.activitys.TelaDeEntradaActivity
 import com.example.motorplace.util.userAtual
@@ -41,6 +42,10 @@ class PerfilFragment : Fragment() {
 
         view.btn_atualizar_dados.setOnClickListener {
             startActivity(Intent(context,AtualizarDadosActivity::class.java))
+        }
+
+        view.btn_atualizar_carro.setOnClickListener {
+            startActivity(Intent(context,AtualizarCarroActivity::class.java))
         }
 
         return view

@@ -43,7 +43,7 @@ class AtualizarDadosActivity : AppCompatActivity() {
     private var imagem: Bitmap? = null
     private lateinit var storageReference : StorageReference
     private lateinit var u: Usuario
-   private lateinit var progressImage: ProgressBar
+    private lateinit var progressImage: ProgressBar
     private lateinit var pd  : ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
