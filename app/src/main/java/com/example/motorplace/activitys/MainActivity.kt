@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     if(isAdm){
                         Handler().postDelayed({
                             //metodo para trocar de tela
-                            val intent = Intent(applicationContext, TelaHomeAdm::class.java)
+                            val intent = Intent(applicationContext, HomeAdmActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent)

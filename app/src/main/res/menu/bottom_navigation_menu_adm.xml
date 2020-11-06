@@ -2,23 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_principal"
+        android:id="@+id/navigation_home_adm"
         android:title="Principal"
+        android:enabled="true"
         android:icon="@drawable/ic_home"
         />
     <item
-        android:id="@+id/navigation_servicos"
+        android:id="@+id/navigation_servicos_adm"
         android:title="Serviços"
+        android:enabled="true"
         android:icon="@drawable/ic_servicos"
         />
     <item
-        android:id="@+id/navigation_agenda"
+        android:id="@+id/navigation_produtos_adm"
+        android:title="Produtos"
+        android:enabled="true"
+        android:icon="@drawable/ic_carrinho"
+        />
+    <item
+        android:id="@+id/navigation_agenda_adm"
         android:title="Agenda"
+        android:enabled="true"
         android:icon="@drawable/ic_agenda"
         />
     <item
-        android:id="@+id/navigation_perfil"
+        android:id="@+id/navigation_perfil_adm"
         android:title="Perfil"
+        android:enabled="true"
         android:icon="@drawable/ic_perfil"
         />
 </menu>

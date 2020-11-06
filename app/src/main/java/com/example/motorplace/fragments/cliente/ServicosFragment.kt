@@ -1,4 +1,4 @@
-package com.example.motorplace.fragments
+package com.example.motorplace.fragments.cliente
 
 import android.os.Bundle
 import android.view.LayoutInflater

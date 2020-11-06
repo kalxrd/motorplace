@@ -1,4 +1,4 @@
-package com.example.motorplace.fragments
+package com.example.motorplace.fragments.cliente
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -14,7 +14,6 @@ import com.example.motorplace.activitys.TelaDeEntradaActivity
 import com.example.motorplace.util.userAtual
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_perfil.*
 import kotlinx.android.synthetic.main.fragment_perfil.view.*
 
 

@@ -16,16 +16,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.AtualizarCarroActivity" android:parentActivityName=".activitys.TelaHomeCliente"/>
+        <activity
+            android:name=".activitys.AtualizarCarroActivity"
+            android:parentActivityName=".activitys.TelaHomeCliente" />
         <activity
             android:name=".activitys.AtualizarDadosActivity"
             android:parentActivityName=".activitys.TelaHomeCliente" />
         <activity
             android:name=".activitys.TelaRecuperarSenha"
             android:parentActivityName=".activitys.TelaDeLogin" />
-        <activity android:name=".activitys.TelaHomeAdm" />
         <activity
             android:name=".activitys.TelaHomeCliente"
+            android:theme="@style/appbar" />
+        <activity
+            android:name=".activitys.HomeAdmActivity"
             android:theme="@style/appbar" />
         <activity
             android:name=".activitys.TelaCadastroUsuario"

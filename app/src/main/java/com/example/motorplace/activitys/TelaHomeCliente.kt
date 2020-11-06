@@ -2,19 +2,17 @@ package com.example.motorplace.activitys
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.motorplace.R
-import com.example.motorplace.fragments.AgendaFragment
-import com.example.motorplace.fragments.HomeFragment
-import com.example.motorplace.fragments.PerfilFragment
-import com.example.motorplace.fragments.ServicosFragment
+import com.example.motorplace.fragments.cliente.AgendaFragment
+import com.example.motorplace.fragments.cliente.HomeFragment
+import com.example.motorplace.fragments.cliente.PerfilFragment
+import com.example.motorplace.fragments.cliente.ServicosFragment
 import com.example.motorplace.model.Usuario
 import com.example.motorplace.util.userAtual
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_tela_home_cliente.*
 
 
