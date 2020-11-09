@@ -1,7 +1,6 @@
 package com.example.motorplace.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motorplace.R
-import com.example.motorplace.activitys.ServicoActivity
 import com.example.motorplace.model.Servico
 import com.squareup.picasso.Picasso
 
-
-class ServicosAdapter (private val context: Context, private val listServicos: ArrayList<Servico>) : RecyclerView.Adapter<ServicosAdapter.MyViewHolder>(){
+class AgendaAdapter (private val context: Context, private val listServicos: ArrayList<Servico>) : RecyclerView.Adapter<AgendaAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_view_servicos,viewGroup,false)
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_view_agenda,viewGroup,false)
         return MyViewHolder(view)
 
     }
@@ -30,19 +27,12 @@ class ServicosAdapter (private val context: Context, private val listServicos: A
         val servico = listServicos.get(i)
         myViewHolder.titulo.text = servico.titulo
         myViewHolder.valor.text = servico.valor
+        myViewHolder.descricao.text = servico.descricao
 
 
         //metodo de click
         myViewHolder.itemView.setOnClickListener {
-            val intent = Intent(context,ServicoActivity::class.java)
-            intent.putExtra("titulo",servico.titulo)
-            intent.putExtra("descricao",servico.descricao)
-            intent.putExtra("categoria",servico.categoria)
-            intent.putExtra("valor",servico.valor)
-            intent.putExtra("custo",servico.custo)
-            intent.putExtra("id",servico.id)
-            intent.putExtra("foto",servico.foto)
-            context.startActivity(intent)
+
         }
 
         //pega a primeira imagem da lista
@@ -54,13 +44,15 @@ class ServicosAdapter (private val context: Context, private val listServicos: A
 
     inner  class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var titulo : TextView
+        var descricao : TextView
         var valor : TextView
         var foto : ImageView
 
         init {
-            titulo = itemView.findViewById(R.id.txt_titulo_cliente_list)
-            valor = itemView.findViewById(R.id.txt_valor_cliente)
-            foto = itemView.findViewById(R.id.image_servicos_cliente)
+            titulo = itemView.findViewById(R.id.titulo_agenda)
+            descricao =  itemView.findViewById(R.id.descricao_agenda)
+            valor = itemView.findViewById(R.id.agenda_valor)
+            foto = itemView.findViewById(R.id.image_agenda)
 
         }
     }

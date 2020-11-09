@@ -29,3 +29,9 @@ class Servico(
     var valor : String = "",
     var custo: String = ""
 )
+
+class ServicosSolicitados(
+    var idCliente : String = "",
+    var idServico : String = "",
+    var id:String = "",
+)

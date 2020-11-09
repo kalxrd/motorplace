@@ -9,7 +9,9 @@ import com.example.motorplace.fragments.cliente.AgendaFragment
 import com.example.motorplace.fragments.cliente.HomeFragment
 import com.example.motorplace.fragments.cliente.PerfilFragment
 import com.example.motorplace.fragments.cliente.ServicosFragment
+import com.example.motorplace.model.Carro
 import com.example.motorplace.model.Usuario
+import com.example.motorplace.util.carroAtual
 import com.example.motorplace.util.userAtual
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -37,6 +39,7 @@ class TelaHomeCliente : AppCompatActivity() {
     }
     private fun inicializar(){
         userAtual = Usuario()
+        carroAtual = Carro()
         database = FirebaseDatabase.getInstance().reference
         auth = FirebaseAuth.getInstance()
     }
@@ -44,6 +47,7 @@ class TelaHomeCliente : AppCompatActivity() {
     private fun carregarDados(){
         val user =auth.currentUser
         val usuario = database.child("usuarios").child(auth.uid!!)
+        val carro = database.child("carros").child(auth.uid!!)
 
         user?.let{
             usuario.addValueEventListener(object : ValueEventListener {
@@ -60,6 +64,25 @@ class TelaHomeCliente : AppCompatActivity() {
                     userAtual.telefone = u.telefone
                     userAtual.dataNasc = u.dataNasc
                     userAtual.foto = u.foto
+                }
+
+            })
+
+            carro.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val c = dataSnapshot.getValue(Carro::class.java)!!
+
+                    carroAtual.idUsuario = c.idUsuario
+                    carroAtual.placa = c.placa
+                    carroAtual.modelo = c.modelo
+                    carroAtual.marca = c.marca
+                    carroAtual.ano = c.ano
+                    carroAtual.cor = c.cor
+                    carroAtual.tamanho = c.tamanho
                 }
 
             })
