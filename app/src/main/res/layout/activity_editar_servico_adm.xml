@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.CadastroServicoActivity">
+    tools:context=".activitys.EditarServicoAdmActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,7 +12,7 @@
         android:padding="20dp"
         >
         <ImageView
-            android:id="@+id/image_servicos"
+            android:id="@+id/image_servicos_editar"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/image_default_servicos"/>
@@ -24,7 +24,7 @@
             android:textColorHint="#000000"
             >
             <EditText
-                android:id="@+id/txt_titulo_servico"
+                android:id="@+id/txt_titulo_servico_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -42,7 +42,7 @@
             android:textColorHint="#000000"
             >
             <EditText
-                android:id="@+id/txt_descricao"
+                android:id="@+id/txt_descricao_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -61,7 +61,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spinner_cadastro_servicos"
+            android:id="@+id/spinner_editar_servicos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -92,7 +92,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
-                    android:id="@+id/txt_valor"
+                    android:id="@+id/txt_valor_editar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -111,7 +111,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
-                    android:id="@+id/txt_custo"
+                    android:id="@+id/txt_custo_editar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -133,26 +133,27 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_cancelar_servico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_radius"
-                android:text="Limpar"
+                android:text="Cancelar"
                 android:textAllCaps="false"
                 android:textColor="#C21500"
                 android:textSize="18sp"
                 />
 
             <Button
-                android:id="@+id/btn_cadastrar_servico"
+                android:id="@+id/btn_alterar_servico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:text="Cadastrar"
+                android:text="Alterar"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />

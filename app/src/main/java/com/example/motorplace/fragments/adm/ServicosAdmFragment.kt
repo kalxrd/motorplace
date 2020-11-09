@@ -6,11 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.motorplace.R
+import com.example.motorplace.adapter.ServicosAdmAdapter
+import com.example.motorplace.model.Servico
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_servicos_adm.view.*
+import java.util.*
 
 
-class ServicosAdmFragment : Fragment() {
+class ServicosAdmFragment : Fragment(){
+    private lateinit var recyclerViewServicos: RecyclerView
+    private var servicos = arrayListOf<Servico>()
+    private lateinit var adapterServico: ServicosAdmAdapter
+    private lateinit var servicosRecuperados : DatabaseReference
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +33,40 @@ class ServicosAdmFragment : Fragment() {
         view.spinner_filtro_adm.setAdapter(
             ArrayAdapter(view.context,R.layout.support_simple_spinner_dropdown_item, spinnerFiltro)
         ) //seta o adapter no spinner
+
+        servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
+
+        recyclerViewServicos = view.findViewById(R.id.recyclerView)
+        recyclerViewServicos.layoutManager = LinearLayoutManager(view.context)
+        recyclerViewServicos.hasFixedSize()
+
+        adapterServico = ServicosAdmAdapter(view.context!!,servicos,servicosRecuperados)
+
+        recyclerViewServicos.adapter = adapterServico
+
+        //recupera dados
+        recuperarServico()
+
         return view
     }
 
+
+    private fun recuperarServico(){
+        servicosRecuperados.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                servicos.clear()
+                for (d in dataSnapshot.children){
+                    val u = d.getValue(Servico::class.java)
+                    servicos.add(u!!)
+                }
+
+                Collections.reverse(servicos)
+                adapterServico.notifyDataSetChanged()
+            }
+
+        })
+
+    }
 }

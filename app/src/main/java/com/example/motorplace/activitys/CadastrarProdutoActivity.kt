@@ -10,5 +10,7 @@ class CadastrarProdutoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cadastrar_produto)
         supportActionBar!!.title ="Cadastrar produto"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+
     }
 }

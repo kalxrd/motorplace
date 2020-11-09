@@ -16,17 +16,24 @@ import com.example.motorplace.R
 import com.example.motorplace.model.Servico
 import com.example.motorplace.model.Usuario
 import com.example.motorplace.util.Permissao
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_cadastro_servico.*
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_atualizar_carro.*
+import kotlinx.android.synthetic.main.activity_editar_servico_adm.*
 import java.io.ByteArrayOutputStream
 
-class CadastroServicoActivity : AppCompatActivity() {
-    private lateinit var database: DatabaseReference
-    private lateinit var auth: FirebaseAuth
+class EditarServicoAdmActivity : AppCompatActivity() {
+    private lateinit var data : Bundle
+    private lateinit var titulo:TextView
+    private lateinit var descricao:TextView
+    private lateinit var valor:TextView
+    private lateinit var custo:TextView
+    private lateinit var foto : String
+    private  var categoria : String = ""
     private lateinit var imagemPerfil: ImageView
     private val permisssaoCamera= arrayOf(Manifest.permission.CAMERA) //array com as permições que o app precisará (camera)
     private val permisssaoGaleria = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE) //array com as permições que o app precisará (Galeria)
@@ -34,100 +41,27 @@ class CadastroServicoActivity : AppCompatActivity() {
     private val SELECAO_GALERIA = 200
     private var imagem: Bitmap? = null
     private lateinit var storageReference : StorageReference
-    private lateinit var u: Usuario
-    private lateinit var progressImage: ProgressBar
-    private lateinit var pd  : ProgressDialog
-    private var pgtCategoria: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cadastro_servico)
-        supportActionBar!!.title ="Cadastrar Serviço"
+        setContentView(R.layout.activity_editar_servico_adm)
+        supportActionBar!!.title ="Editar Serviço"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-
-        //criacao do spinner
-        val spinnerFiltro = resources.getStringArray(R.array.categoria) //recupera o array do string.xml
-        spinner_cadastro_servicos.setAdapter(
-            ArrayAdapter(this,
-            R.layout.support_simple_spinner_dropdown_item, spinnerFiltro)
-        ) //seta o adapter no spinner
-
+        data = intent.extras!!
         inicializar()
 
-        image_servicos.setOnClickListener {
+        imagemPerfil.setOnClickListener {
             mudarFoto()
         }
 
-        btn_cadastrar_servico.setOnClickListener {
-            veririfcaCampos()
-        }
-    }
-    fun inicializar(){
-        database = FirebaseDatabase.getInstance().reference
-        auth = FirebaseAuth.getInstance()
-        imagemPerfil = findViewById(R.id.image_servicos)
-        storageReference = FirebaseStorage.getInstance().reference
-        //progressImage = findViewById(R.id.progressImage)
-
-        spinner_cadastro_servicos.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                //(parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#bdbdbd"))
-                (parent.getChildAt(0) as TextView).setTypeface(Typeface.DEFAULT)
-                pgtCategoria = spinner_cadastro_servicos.getItemAtPosition(position).toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-            }
-        })
-
-    }
-
-    fun veririfcaCampos(){
-        var titulo = txt_titulo_servico.text.toString()
-        var descricao = txt_descricao.text.toString()
-        var valor = txt_valor.text.toString()
-        var custo = txt_custo.text.toString()
-
-        var valido = true
-
-        if(titulo.isEmpty()){
-            txt_titulo_servico.error = "Campo obrigatório"
-            valido = false
-        }
-        if(descricao.isEmpty()){
-            txt_descricao.error = "Campo obrigatório"
-            valido = false
-        }
-        if(valor.isEmpty()){
-            txt_valor.error = "Campo obrigatório"
-            valido = false
-        }
-        if(custo.isEmpty()){
-            txt_custo.error = "Campo obrigatório"
-            valido = false
+        btn_alterar_servico.setOnClickListener {
+            salvar()
         }
 
-        if(valido && pgtCategoria.isEmpty()){
-            Toast.makeText(this,"Escolha uma categoria",Toast.LENGTH_SHORT).show()
-        }else if(valido && imagem == null){
-            Toast.makeText(this,"Selecione uma Foto",Toast.LENGTH_SHORT).show()
-        }else if(valido && !pgtCategoria.isEmpty() && !(imagem == null)){
-            val servico  = Servico()
-            servico.titulo = titulo
-            servico.descricao = descricao
-            servico.categoria = pgtCategoria
-            servico.valor = valor
-            servico.custo = custo
-
-           salvar(servico)
+        btn_cancelar_servico.setOnClickListener {
+            finish()
         }
-
     }
 
     fun mudarFoto() {
@@ -168,6 +102,7 @@ class CadastroServicoActivity : AppCompatActivity() {
             .create()
             .show()
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         for (permissaoResultado in grantResults) {
@@ -192,6 +127,75 @@ class CadastroServicoActivity : AppCompatActivity() {
                 }
             }
 
+        }
+    }
+
+    fun salvar(){
+        val pd = ProgressDialog(this)
+        pd.setMessage("Salvando...")
+        pd.show()
+        titulo = findViewById(R.id.txt_titulo_servico_editar)
+        descricao = findViewById(R.id.txt_descricao_editar)
+        valor = findViewById(R.id.txt_valor_editar)
+        custo = findViewById(R.id.txt_custo_editar)
+
+        val servico = Servico()
+        servico.titulo = titulo.text.toString()
+        servico.descricao = descricao.text.toString()
+        servico.valor = valor.text.toString()
+        servico.custo = custo.text.toString()
+        servico.foto = foto
+        servico.categoria = categoria
+        servico.id = data.getString("id")!!
+
+       val database = FirebaseDatabase.getInstance().reference
+
+        database.child("servicos").child(data.getString("id")!!).setValue(servico).addOnCompleteListener {
+            if(it.isSuccessful){
+                if (imagem != null){
+                    salvarFoto(database.child("servicos").child(data.getString("id")!!),data.getString("id")!!)
+                }else{
+                    Toast.makeText(this, "Dados alterados com sucesso!", Toast.LENGTH_SHORT)
+                        .show()
+                    val intent = Intent(this,HomeAdmActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent)
+                }
+            }
+        }
+    }
+
+    fun salvarFoto(ref: DatabaseReference, id : String){
+        //recuperar dados da imagem para o firebase
+        val baos =  ByteArrayOutputStream()
+
+        imagem?.compress(Bitmap.CompressFormat.JPEG, 70, baos)
+
+        val dadosImagem = baos.toByteArray()
+
+        //Salvar no Firebase
+        val imagemRef = storageReference
+            .child("imagens")
+            .child("servicos")
+            .child(id)
+            .child("servico.jpeg")
+
+        val uploadTask = imagemRef.putBytes(dadosImagem)
+        uploadTask.addOnFailureListener{
+            //Se houve erro no upload da imageFile
+            Toast.makeText(this, "Erro ao salvar  a foto", Toast.LENGTH_SHORT).show()
+        }.addOnSuccessListener {
+            imagemRef.downloadUrl.addOnSuccessListener {
+                ref.child("foto").setValue(it.toString())
+            }
+            //Se o upload da imageFile foi realizado com sucesso
+            Toast.makeText(this, "Dados alterados com sucesso!", Toast.LENGTH_SHORT)
+                .show()
+            val intent = Intent(this,HomeAdmActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent)
         }
     }
 
@@ -232,50 +236,64 @@ class CadastroServicoActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
-    fun salvar(servico : Servico){
-        val pd = ProgressDialog(this)
-        pd.setMessage("Salvando...")
-        pd.show()
 
-        val produtoRef = database.child("servicos")
-        var id = produtoRef.push().key
-       produtoRef.child(id!!).setValue(servico).addOnCompleteListener {
-           if(it.isSuccessful){
-               salvarFoto(produtoRef.child(id!!),id)
-           }
-       }
-    }
-    fun salvarFoto(ref:DatabaseReference, id:String){
-        //recuperar dados da imagem para o firebase
-        val baos =  ByteArrayOutputStream()
+    fun inicializar(){
+        titulo = findViewById(R.id.txt_titulo_servico_editar)
+        descricao = findViewById(R.id.txt_descricao_editar)
+        valor = findViewById(R.id.txt_valor_editar)
+        custo = findViewById(R.id.txt_custo_editar)
 
-        imagem?.compress(Bitmap.CompressFormat.JPEG, 70, baos)
+        imagemPerfil = findViewById(R.id.image_servicos_editar)
+        storageReference = FirebaseStorage.getInstance().reference
 
-        val dadosImagem = baos.toByteArray()
 
-        //Salvar no Firebase
-        val imagemRef = storageReference
-            .child("imagens")
-            .child("servicos")
-            .child(id)
-            .child("servico.jpeg")
+        titulo.text = data.get("titulo").toString()
+        descricao.text = data.get("descricao").toString()
+        valor.text = data.get("valor").toString()
+        custo.text = data.get("custo").toString()
+        foto = data.getString("foto")!!
 
-        val uploadTask = imagemRef.putBytes(dadosImagem)
-        uploadTask.addOnFailureListener{
-            //Se houve erro no upload da imageFile
-            Toast.makeText(this, "Erro ao salvar  a foto", Toast.LENGTH_SHORT).show()
-        }.addOnSuccessListener {
-            imagemRef.downloadUrl.addOnSuccessListener {
-                ref.child("foto").setValue(it.toString())
-                ref.child("id").setValue(id)
+        Picasso.get()
+            .load(foto)
+            .into(image_servicos_editar)
+
+        //preenche os dados do spinner
+        val spinnerCategoria: Spinner = findViewById(R.id.spinner_editar_servicos)
+        ArrayAdapter.createFromResource(
+            this, R.array.categoria, android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinnerCategoria.adapter = adapter
+        }
+
+        //verifica o spinner selecionado
+        spinnerCategoria.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                //(parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#bdbdbd"))
+                (parent.getChildAt(0) as TextView).setTypeface(Typeface.DEFAULT)
+                categoria = spinnerCategoria.getItemAtPosition(position).toString()
             }
-            //Se o upload da imageFile foi realizado com sucesso
-            Toast.makeText(this, "Serviço cadastrado com sucesso!", Toast.LENGTH_SHORT)
-                .show()
-            val intent = Intent(this,HomeAdmActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent)
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        })
+
+        val cat = data.getString("categoria")
+        if(cat.equals("Revisão e Manutenção")){
+           spinnerCategoria.setSelection(1)
+            categoria = "Revisão e Manutenção"
+        }else if(cat.equals("Pintura e Funilária")){
+            spinnerCategoria.setSelection(2)
+            categoria = "Pintura e Funilária"
+        }else if(cat.equals("Eletrica")){
+            spinnerCategoria.setSelection(3)
+            categoria = "Eletrica"
         }
     }
 }

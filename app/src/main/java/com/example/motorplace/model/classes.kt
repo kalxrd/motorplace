@@ -19,3 +19,13 @@ class Carro(
     var cor: String = "",
     var tamanho: String = ""
 )
+
+class Servico(
+    var id : String = "",
+    var titulo : String = "",
+    var foto : String = "",
+    var descricao : String = "",
+    var categoria: String = "",
+    var valor : String = "",
+    var custo: String = ""
+)
