@@ -17,7 +17,7 @@ import com.example.motorplace.model.Servico
 import com.google.firebase.database.DatabaseReference
 import com.squareup.picasso.Picasso
 
-class ServicosAdmAdapter (private val context: Context, private val listServicos: ArrayList<Servico>, private val servicosRecuperados:DatabaseReference) : RecyclerView.Adapter<ServicosAdmAdapter.MyViewHolder>(){
+class ServicosAdmAdapter (private val context: Context, private val listServicos: ArrayList<Servico>, private val servicosRecuperados:DatabaseReference, private val servicosExcluidos:DatabaseReference) : RecyclerView.Adapter<ServicosAdmAdapter.MyViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_servicos_adm,viewGroup,false)

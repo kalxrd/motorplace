@@ -21,6 +21,8 @@ class ServicosAdmFragment : Fragment(){
     private var servicos = arrayListOf<Servico>()
     private lateinit var adapterServico: ServicosAdmAdapter
     private lateinit var servicosRecuperados : DatabaseReference
+    private lateinit var servicosExcluidos : DatabaseReference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,12 +37,13 @@ class ServicosAdmFragment : Fragment(){
         ) //seta o adapter no spinner
 
         servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
+        servicosExcluidos =  FirebaseDatabase.getInstance().reference.child("servicosSolicitados")
 
         recyclerViewServicos = view.findViewById(R.id.recyclerView)
         recyclerViewServicos.layoutManager = LinearLayoutManager(view.context)
         recyclerViewServicos.hasFixedSize()
 
-        adapterServico = ServicosAdmAdapter(view.context!!,servicos,servicosRecuperados)
+        adapterServico = ServicosAdmAdapter(view.context!!,servicos,servicosRecuperados,servicosExcluidos)
 
         recyclerViewServicos.adapter = adapterServico
 

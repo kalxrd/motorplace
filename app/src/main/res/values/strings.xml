@@ -16,8 +16,10 @@
     <string name="pesquisar">Pesquisar</string>
 
     <string-array name="filtro">
-        <item>Todos</item>
-        <item>Alguns</item>
+        <item></item>
+        <item>Revisão e Manutenção</item>
+        <item>Pintura e Funilária</item>
+        <item>Eletrica</item>
     </string-array>
 
     <string-array name="tamanho">

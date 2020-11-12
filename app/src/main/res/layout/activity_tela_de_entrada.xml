@@ -54,33 +54,17 @@
               android:textColor="#C21500"
               android:textSize="20dp"
               />
-    <!-- Botão Facebook -->
-          <Button
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/button_redesocial"
-              android:backgroundTint="#3B5998"
-              android:layout_gravity="center_horizontal"
-              android:layout_marginLeft="100dp"
-              android:layout_marginRight="100dp"
-              android:layout_marginTop="50dp"
-              android:text="Entrar com"
-              android:textAllCaps="false"
-              android:textColor="#ffffff"
-              android:textSize="15dp"
-              android:drawableStart="@drawable/ic_facebook"
-              android:paddingLeft="24dp"
-              />
+
     <!-- Botão Google -->
           <Button
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@drawable/button_redesocial"
-              android:backgroundTint="#2196F3"
+              android:backgroundTint="#C33424"
               android:layout_gravity="center_horizontal"
               android:layout_marginLeft="100dp"
               android:layout_marginRight="100dp"
-              android:layout_marginTop="10dp"
+              android:layout_marginTop="50dp"
               android:text="Entrar com"
               android:textAllCaps="false"
               android:textColor="#ffffff"
