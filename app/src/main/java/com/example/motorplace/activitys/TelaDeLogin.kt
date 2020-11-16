@@ -23,6 +23,7 @@ class TelaDeLogin : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         reference = FirebaseDatabase.getInstance().reference
+
         btnLogin.setOnClickListener{
             login()
         }

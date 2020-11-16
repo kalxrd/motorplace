@@ -14,8 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.motorplace.R
 import com.example.motorplace.activitys.EditarServicoAdmActivity
 import com.example.motorplace.model.Servico
+import com.example.motorplace.model.ServicosSolicitados
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ServicosAdmAdapter (private val context: Context, private val listServicos: ArrayList<Servico>, private val servicosRecuperados:DatabaseReference, private val servicosExcluidos:DatabaseReference) : RecyclerView.Adapter<ServicosAdmAdapter.MyViewHolder>(){
 
@@ -50,7 +56,7 @@ class ServicosAdmAdapter (private val context: Context, private val listServicos
         }
 
         myViewHolder.excluir.setOnClickListener {
-            confirmarExclusao(myViewHolder,servico)
+            confirmarExclusao(myViewHolder,servico.id)
         }
 
 
@@ -76,13 +82,13 @@ class ServicosAdmAdapter (private val context: Context, private val listServicos
             editar = itemView.findViewById(R.id.btn_editar_servico)
         }
     }
-    fun confirmarExclusao(myViewHolder : MyViewHolder, servico: Servico){
+    fun confirmarExclusao(myViewHolder : MyViewHolder, id: String){
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Excluir Serviço")
         builder.setMessage("Você tem certeza que deseja EXCLUIR o serviço: ${myViewHolder.titulo.text} ?")
         builder.setCancelable(false)
 
-        builder.setPositiveButton("Excluir" ){ dialogInterface, i ->apagar(servico) }
+        builder.setPositiveButton("Excluir" ){ dialogInterface, i ->apagar(id) }
 
         builder.setNegativeButton("Cancelar"){dialogInterface, i ->}
 
@@ -90,13 +96,31 @@ class ServicosAdmAdapter (private val context: Context, private val listServicos
         dialog.show()
     }
 
-    fun apagar(servico: Servico){
-        servicosRecuperados.child(servico.id).removeValue().addOnCompleteListener {
+    fun apagar(id: String){
+        servicosRecuperados.child(id).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
+               // procurarSolicitacao(id)
                 Toast.makeText(context,"Serviço excluido com succeso",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context,"Erro ao excluir o serviço!",Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun procurarSolicitacao(idServico:String){
+        servicosExcluidos.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (d in dataSnapshot.children){
+                    val u = d.getValue(ServicosSolicitados::class.java)
+                    if(u!!.idServico== idServico){
+
+                    }
+                }
+            }
+
+        })
+
     }
 }

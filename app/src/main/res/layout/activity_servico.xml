@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="R$ 25,00"
+                android:text="25,00"
                 android:textStyle="bold"
                 android:textSize="40dp"
                 android:textColor="@android:color/black"/>

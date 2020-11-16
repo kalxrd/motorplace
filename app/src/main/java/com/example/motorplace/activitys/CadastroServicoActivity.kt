@@ -7,14 +7,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.example.motorplace.R
 import com.example.motorplace.model.Servico
 import com.example.motorplace.model.Usuario
+import com.example.motorplace.util.MoneyTextWatcher
 import com.example.motorplace.util.Permissao
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -23,6 +24,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_cadastro_servico.*
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class CadastroServicoActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
@@ -49,8 +51,10 @@ class CadastroServicoActivity : AppCompatActivity() {
         //criacao do spinner
         val spinnerFiltro = resources.getStringArray(R.array.categoria) //recupera o array do string.xml
         spinner_cadastro_servicos.setAdapter(
-            ArrayAdapter(this,
-            R.layout.support_simple_spinner_dropdown_item, spinnerFiltro)
+            ArrayAdapter(
+                this,
+                R.layout.support_simple_spinner_dropdown_item, spinnerFiltro
+            )
         ) //seta o adapter no spinner
 
         inicializar()
@@ -70,7 +74,8 @@ class CadastroServicoActivity : AppCompatActivity() {
         storageReference = FirebaseStorage.getInstance().reference
         //progressImage = findViewById(R.id.progressImage)
 
-        spinner_cadastro_servicos.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        spinner_cadastro_servicos.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View,
@@ -86,6 +91,10 @@ class CadastroServicoActivity : AppCompatActivity() {
             }
         })
 
+        var mLocale = Locale("pt", "BR")
+
+        txt_valor.addTextChangedListener(MoneyTextWatcher(txt_valor,mLocale))
+        txt_custo.addTextChangedListener(MoneyTextWatcher(txt_custo,mLocale))
     }
 
     fun veririfcaCampos(){
@@ -114,9 +123,9 @@ class CadastroServicoActivity : AppCompatActivity() {
         }
 
         if(valido && pgtCategoria.isEmpty()){
-            Toast.makeText(this,"Escolha uma categoria",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Escolha uma categoria", Toast.LENGTH_SHORT).show()
         }else if(valido && imagem == null){
-            Toast.makeText(this,"Selecione uma Foto",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Selecione uma Foto", Toast.LENGTH_SHORT).show()
         }else if(valido && !pgtCategoria.isEmpty() && !(imagem == null)){
             val servico  = Servico()
             servico.titulo = titulo
@@ -157,7 +166,10 @@ class CadastroServicoActivity : AppCompatActivity() {
                         //abre as permissoes para galeria/ se o usuario tiver permissao irá abrir a galeria
                         if (Permissao.validarPermissao(permisssaoGaleria, this, SELECAO_GALERIA)) {
                             val intent =
-                                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                                Intent(
+                                    Intent.ACTION_PICK,
+                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                                )
                             if (intent.resolveActivity(packageManager) != null) {
                                 startActivityForResult(intent, SELECAO_GALERIA)
                             }
@@ -168,7 +180,11 @@ class CadastroServicoActivity : AppCompatActivity() {
             .create()
             .show()
     }
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         for (permissaoResultado in grantResults) {
             if (permissaoResultado == PackageManager.PERMISSION_DENIED) {
@@ -215,7 +231,7 @@ class CadastroServicoActivity : AppCompatActivity() {
                     //recuperar dados da imagem para o firebase
                     imagemPerfil.setImageBitmap(imagem)
                 }
-            } catch (e:java.lang.Exception) {
+            } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
         }
@@ -226,13 +242,13 @@ class CadastroServicoActivity : AppCompatActivity() {
         builder.setTitle("Permissão Negada")
         builder.setMessage("Para poder acessar este recurso é neceessário aceitar a permissão")
         builder.setCancelable(false)
-        builder.setPositiveButton("OK" ){ dialogInterface, i ->  }
+        builder.setPositiveButton("OK"){ dialogInterface, i ->  }
 
 
         val dialog = builder.create()
         dialog.show()
     }
-    fun salvar(servico : Servico){
+    fun salvar(servico: Servico){
         val pd = ProgressDialog(this)
         pd.setMessage("Salvando...")
         pd.show()
@@ -241,11 +257,11 @@ class CadastroServicoActivity : AppCompatActivity() {
         var id = produtoRef.push().key
        produtoRef.child(id!!).setValue(servico).addOnCompleteListener {
            if(it.isSuccessful){
-               salvarFoto(produtoRef.child(id!!),id)
+               salvarFoto(produtoRef.child(id!!), id)
            }
        }
     }
-    fun salvarFoto(ref:DatabaseReference, id:String){
+    fun salvarFoto(ref: DatabaseReference, id: String){
         //recuperar dados da imagem para o firebase
         val baos =  ByteArrayOutputStream()
 
@@ -272,7 +288,7 @@ class CadastroServicoActivity : AppCompatActivity() {
             //Se o upload da imageFile foi realizado com sucesso
             Toast.makeText(this, "Serviço cadastrado com sucesso!", Toast.LENGTH_SHORT)
                 .show()
-            val intent = Intent(this,HomeAdmActivity::class.java)
+            val intent = Intent(this, HomeAdmActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent)

@@ -61,7 +61,7 @@ class ServicosAdmFragment : Fragment(){
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 servicos.clear()
                 for (d in dataSnapshot.children){
-                    val u = d.getValue(Servico::class.java)
+                    var u = d.getValue(Servico::class.java)
                     servicos.add(u!!)
                 }
 
