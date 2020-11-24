@@ -104,7 +104,7 @@ class TelaHomeCliente : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_servicos -> {
-                    supportActionBar!!.title = "Revisões"
+                    supportActionBar!!.title = "Serviços"
                     trocarFragment(ServicosFragment())
                     return@setOnNavigationItemSelectedListener true
                 }

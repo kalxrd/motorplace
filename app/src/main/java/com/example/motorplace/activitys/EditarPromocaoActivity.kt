@@ -13,8 +13,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import com.example.motorplace.R
-import com.example.motorplace.model.Servico
-import com.example.motorplace.model.Usuario
+import com.example.motorplace.model.Promocao
 import com.example.motorplace.util.MoneyTextWatcher
 import com.example.motorplace.util.Permissao
 import com.google.firebase.database.DatabaseReference
@@ -22,19 +21,16 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_atualizar_carro.*
-import kotlinx.android.synthetic.main.activity_editar_servico_adm.*
-import kotlinx.android.synthetic.main.activity_editar_servico_adm.view.*
+import kotlinx.android.synthetic.main.activity_editar_promocao.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 
-class EditarServicoAdmActivity : AppCompatActivity() {
+class EditarPromocaoActivity : AppCompatActivity() {
     private lateinit var data : Bundle
-    private lateinit var titulo:TextView
-    private lateinit var descricao:TextView
-    private lateinit var valor:TextView
-    private lateinit var custo:TextView
+    private lateinit var titulo: TextView
+    private lateinit var descricao: TextView
+    private lateinit var prazo: TextView
+    private lateinit var oferta: TextView
     private lateinit var foto : String
     private  var categoria : String = ""
     private lateinit var imagemPerfil: ImageView
@@ -44,12 +40,12 @@ class EditarServicoAdmActivity : AppCompatActivity() {
     private val SELECAO_GALERIA = 200
     private var imagem: Bitmap? = null
     private lateinit var storageReference : StorageReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_editar_servico_adm)
-        supportActionBar!!.title ="Editar Serviço"
+        setContentView(R.layout.activity_editar_promocao)
+        supportActionBar!!.title ="Editar Promoção"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
 
         data = intent.extras!!
         inicializar()
@@ -58,11 +54,11 @@ class EditarServicoAdmActivity : AppCompatActivity() {
             mudarFoto()
         }
 
-        btn_alterar_servico.setOnClickListener {
+        btn_alterar_promocao.setOnClickListener {
             salvar()
         }
 
-        btn_cancelar_servico.setOnClickListener {
+        btn_cancelar_promocoes.setOnClickListener {
             finish()
         }
     }
@@ -137,33 +133,29 @@ class EditarServicoAdmActivity : AppCompatActivity() {
         val pd = ProgressDialog(this)
         pd.setMessage("Salvando...")
         pd.show()
-        titulo = findViewById(R.id.txt_titulo_servico_editar)
-        descricao = findViewById(R.id.txt_descricao_editar)
-        valor = findViewById(R.id.txt_valor_editar)
-        custo = findViewById(R.id.txt_custo_editar)
 
-        val servico = Servico()
-        servico.titulo = titulo.text.toString()
-        servico.descricao = descricao.text.toString()
-        servico.valor = valor.text.toString()
-        servico.custo = custo.text.toString()
-        servico.foto = foto
-        servico.categoria = categoria
-        servico.id = data.getString("id")!!
+        val promocao = Promocao()
+        promocao.titulo = titulo.text.toString()
+        promocao.descricao = descricao.text.toString()
+        promocao.prazo = prazo.text.toString()
+        promocao.oferta = oferta.text.toString()
+        promocao.foto = foto
+        promocao.categoria = categoria
+        promocao.id = data.getString("id")!!
 
-       val database = FirebaseDatabase.getInstance().reference
+        val database = FirebaseDatabase.getInstance().reference
 
 
-        atualizarValores( database.child("servicos").child(data.getString("id")!!),servico)
+        atualizarValores( database.child("promocoes").child(data.getString("id")!!),promocao)
     }
 
-    fun atualizarValores(ref : DatabaseReference,servico: Servico){
-        ref.child("categoria").setValue(servico.categoria)
-        ref.child("custo").setValue(servico.custo)
-        ref.child("descricao").setValue(servico.descricao)
-        ref.child("id").setValue(servico.id)
-        ref.child("titulo").setValue(servico.titulo)
-        ref.child("valor").setValue(servico.valor).addOnCompleteListener {
+    fun atualizarValores(ref : DatabaseReference, promocao: Promocao){
+        ref.child("categoria").setValue(promocao.categoria)
+        ref.child("prazo").setValue(promocao.prazo)
+        ref.child("descricao").setValue(promocao.descricao)
+        ref.child("id").setValue(promocao.id)
+        ref.child("titulo").setValue(promocao.titulo)
+        ref.child("oferta").setValue(promocao.oferta).addOnCompleteListener {
             if(it.isSuccessful){
                 if (imagem != null){
                     salvarFoto(ref,data.getString("id")!!)
@@ -192,9 +184,9 @@ class EditarServicoAdmActivity : AppCompatActivity() {
         //Salvar no Firebase
         val imagemRef = storageReference
             .child("imagens")
-            .child("servicos")
+            .child("promocoes")
             .child(id)
-            .child("servico.jpeg")
+            .child("promocao.jpeg")
 
         val uploadTask = imagemRef.putBytes(dadosImagem)
         uploadTask.addOnFailureListener{
@@ -253,27 +245,27 @@ class EditarServicoAdmActivity : AppCompatActivity() {
     }
 
     fun inicializar(){
-        titulo = findViewById(R.id.txt_titulo_servico_editar)
-        descricao = findViewById(R.id.txt_descricao_editar)
-        valor = findViewById(R.id.txt_valor_editar)
-        custo = findViewById(R.id.txt_custo_editar)
+        titulo = findViewById(R.id.txt_titulo_promocao_editar)
+        descricao = findViewById(R.id.txt_descricao_promocao_editar)
+        prazo = findViewById(R.id.txt_prazo_promocao_editar)
+        oferta = findViewById(R.id.txt_oferta_promocao_editar)
 
-        imagemPerfil = findViewById(R.id.image_servicos_editar)
+        imagemPerfil = findViewById(R.id.image_promocoes_editar)
         storageReference = FirebaseStorage.getInstance().reference
 
 
         titulo.text = data.get("titulo").toString()
         descricao.text = data.get("descricao").toString()
-        valor.text = data.get("valor").toString()
-        custo.text = data.get("custo").toString()
+        prazo.text = data.get("prazo").toString()
+        oferta.text = data.get("oferta").toString()
         foto = data.getString("foto")!!
 
         Picasso.get()
             .load(foto)
-            .into(image_servicos_editar)
+            .into(imagemPerfil)
 
         //preenche os dados do spinner
-        val spinnerCategoria: Spinner = findViewById(R.id.spinner_editar_servicos)
+        val spinnerCategoria: Spinner = findViewById(R.id.spinner_cadastro_promocoes_editar)
         ArrayAdapter.createFromResource(
             this, R.array.categoria, android.R.layout.simple_spinner_item
         ).also { adapter ->
@@ -301,7 +293,7 @@ class EditarServicoAdmActivity : AppCompatActivity() {
 
         val cat = data.getString("categoria")
         if(cat.equals("Revisão e Manutenção")){
-           spinnerCategoria.setSelection(1)
+            spinnerCategoria.setSelection(1)
             categoria = "Revisão e Manutenção"
         }else if(cat.equals("Pintura e Funilária")){
             spinnerCategoria.setSelection(2)
@@ -313,7 +305,7 @@ class EditarServicoAdmActivity : AppCompatActivity() {
 
         var mLocale = Locale("pt", "BR")
 
-        txt_valor_editar.addTextChangedListener(MoneyTextWatcher(txt_valor_editar,mLocale))
-        txt_custo_editar.addTextChangedListener(MoneyTextWatcher(txt_custo_editar,mLocale))
+        txt_oferta_promocao_editar.addTextChangedListener(MoneyTextWatcher(txt_oferta_promocao_editar,mLocale))
+
     }
 }

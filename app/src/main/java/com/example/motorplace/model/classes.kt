@@ -33,5 +33,29 @@ class Servico(
 class ServicosSolicitados(
     var idCliente : String = "",
     var idServico : String = "",
-    var id:String = "",
+    var data : String ="",
+    var hora : String ="",
+    var id:String = ""
+)
+
+class Produto(
+    var id : String = "",
+    var titulo : String = "",
+    var foto : String = "",
+    var descricao : String = "",
+    var marca: String = "",
+    var qtdEstoque: String = "",
+    var alertaQtdMin: String = "",
+    var valor : String = "",
+    var custo: String = ""
+)
+
+class Promocao(
+    var id : String = "",
+    var titulo : String = "",
+    var foto : String = "",
+    var descricao : String = "",
+    var categoria: String = "",
+    var oferta : String = "",
+    var prazo: String = ""
 )

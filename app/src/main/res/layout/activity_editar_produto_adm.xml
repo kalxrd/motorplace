@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.CadastroServicoActivity">
+    tools:context=".activitys.CadastrarProdutoActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +13,7 @@
         android:padding="20dp"
         >
         <ImageView
-            android:id="@+id/image_servicos"
+            android:id="@+id/image_produto_editar"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/image_default_servicos"/>
@@ -19,11 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:hint="Titulo do serviço"
+            android:hint="Titulo do produto"
             android:textColorHint="#000000"
             >
             <EditText
-                android:id="@+id/txt_titulo_servico"
+                android:id="@+id/txt_titulo_produto_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -41,7 +43,7 @@
             android:textColorHint="#000000"
             >
             <EditText
-                android:id="@+id/txt_descricao"
+                android:id="@+id/txt_descricao_produto_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -51,32 +53,70 @@
                 android:inputType="textPersonName"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/componentes_cadastro"
-            android:text="Categoria"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:hint="Marca"
+            android:textColorHint="#000000"
+            >
+            <EditText
+                android:id="@+id/txt_marca_produto_editar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinner_cadastro_servicos"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:ems="10"
-            android:hint="Tamanho"
-            android:inputType="textPersonName"
-            android:textColorHint="#000000" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Defina os valores"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"/>
-
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Qtd.Estoque"
+                android:layout_marginRight="25dp"
+                android:textColorHint="#000000"
+                android:layout_weight="1"
+                >
+                <EditText
+                    android:id="@+id/txt_qtd_estoque_editar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="#000000"
+                    android:drawablePadding="@dimen/espaco_ic"
+                    android:ems="10"
+                    android:inputType="phone"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alerta de qtd.mínima"
+                android:layout_marginLeft="25dp"
+                android:textColorHint="#000000"
+                android:layout_weight="1"
+                >
+                <EditText
+                    android:id="@+id/txt_alerta_editar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="#000000"
+                    android:drawablePadding="@dimen/espaco_ic"
+                    android:ems="10"
+                    android:inputType="phone"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +131,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
-                    android:id="@+id/txt_valor"
+                    android:id="@+id/txt_valor_produto_editar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -110,7 +150,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
-                    android:id="@+id/txt_custo"
+                    android:id="@+id/txt_custo_produto_editar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -121,6 +161,7 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,30 +173,30 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_cancelar_produto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_radius"
-                android:text="Limpar"
+                android:text="Cancelar"
                 android:textAllCaps="false"
                 android:textColor="#C21500"
                 android:textSize="18sp"
                 />
 
             <Button
-                android:id="@+id/btn_cadastrar_servico"
+                android:id="@+id/btn_editar_produto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:text="Cadastrar"
+                android:text="Alterar"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

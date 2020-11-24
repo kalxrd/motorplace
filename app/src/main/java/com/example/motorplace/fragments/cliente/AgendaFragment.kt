@@ -37,7 +37,7 @@ class AgendaFragment : Fragment() {
         view.spinner_filtro.setAdapter(ArrayAdapter(view.context,
             R.layout.support_simple_spinner_dropdown_item, spinnerFiltro)) //seta o adapter no spinner
 
-        servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicosSolicitados")
+        servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
 
         recyclerViewServicos = view.findViewById(R.id.recycler_agenda)
         recyclerViewServicos.layoutManager = LinearLayoutManager(view.context)
@@ -59,26 +59,41 @@ class AgendaFragment : Fragment() {
             override fun onCancelled(p0: DatabaseError) {
             }
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                servicos.clear()
                 for (d in dataSnapshot.children){
-                    val u = d.getValue(ServicosSolicitados::class.java)
-                    if(u!!.idCliente.equals(carroAtual.idUsuario)){
-                        FirebaseDatabase.getInstance().reference.child("servicos").child(u!!.idServico).addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                               var loren = dataSnapshot.getValue(Servico::class.java)!!
+                    val u = d.getValue(Servico::class.java)
+                    //Toast.makeText(context,"${d.key}",Toast.LENGTH_SHORT).show()
+
+                    servicosRecuperados.child(d.key.toString()).child("servicosSolicitados").addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                        }
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            servicos.clear()
+                            for (d in dataSnapshot.children){
+                                val u = d.getValue(ServicosSolicitados::class.java)
+                                if(u!!.idCliente.equals(carroAtual.idUsuario)){
+                                    FirebaseDatabase.getInstance().reference.child("servicos").child(u!!.idServico).addValueEventListener(object : ValueEventListener{
+                                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                            var loren = dataSnapshot.getValue(Servico::class.java)!!
 
 
-                                servicos.add(loren!!)
+                                            servicos.add(loren!!)
 
-                                Collections.reverse(servicos)
-                                adapterAgenda.notifyDataSetChanged()
+                                            Collections.reverse(servicos)
+                                            adapterAgenda.notifyDataSetChanged()
+                                        }
+
+                                        override fun onCancelled(p0: DatabaseError) {
+                                        }
+
+                                    })
+                                }
                             }
+                        }
+                    })
 
-                            override fun onCancelled(p0: DatabaseError) {
-                            }
 
-                        })
-                    }
+
+
                 }
             }
 

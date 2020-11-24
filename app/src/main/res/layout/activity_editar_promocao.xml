@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.CadastroServicoActivity">
+    tools:context=".activitys.EditarPromocaoActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +12,7 @@
         android:padding="20dp"
         >
         <ImageView
-            android:id="@+id/image_servicos"
+            android:id="@+id/image_promocoes_editar"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/image_default_servicos"/>
@@ -19,11 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:hint="Titulo do serviço"
+            android:hint="Titulo da promoção"
             android:textColorHint="#000000"
             >
             <EditText
-                android:id="@+id/txt_titulo_servico"
+                android:id="@+id/txt_titulo_promocao_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -40,8 +41,27 @@
             android:hint="Descrição"
             android:textColorHint="#000000"
             >
+
             <EditText
-                android:id="@+id/txt_descricao"
+                android:id="@+id/txt_descricao_promocao_editar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:hint="Preço da oferta"
+            android:textColorHint="#000000"
+            >
+            <EditText
+                android:id="@+id/txt_oferta_promocao_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -60,7 +80,7 @@
             android:textSize="16sp" />
 
         <Spinner
-            android:id="@+id/spinner_cadastro_servicos"
+            android:id="@+id/spinner_cadastro_promocoes_editar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -69,58 +89,29 @@
             android:inputType="textPersonName"
             android:textColorHint="#000000" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Defina os valores"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"/>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:hint="Prazo"
+            android:textColorHint="#000000"
+            >
+            <com.santalu.maskedittext.MaskEditText
+                android:id="@+id/txt_prazo_promocao_editar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Valor"
-                android:layout_marginRight="25dp"
-                android:textColorHint="#000000"
-                android:layout_weight="1"
-                >
-                <EditText
-                    android:id="@+id/txt_valor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:backgroundTint="#000000"
-                    android:drawablePadding="@dimen/espaco_ic"
-                    android:ems="10"
-                    android:inputType="phone"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Custo"
-                android:layout_marginLeft="25dp"
-                android:textColorHint="#000000"
-                android:layout_weight="1"
-                >
-                <EditText
-                    android:id="@+id/txt_custo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:backgroundTint="#000000"
-                    android:drawablePadding="@dimen/espaco_ic"
-                    android:ems="10"
-                    android:inputType="phone"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:importantForAutofill="no"
+                app:met_mask="##/##/####"
+                tools:targetApi="o"
+                android:inputType="textPersonName"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,26 +123,27 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_cancelar_promocoes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_radius"
-                android:text="Limpar"
+                android:text="Cancelar"
                 android:textAllCaps="false"
                 android:textColor="#C21500"
                 android:textSize="18sp"
                 />
 
             <Button
-                android:id="@+id/btn_cadastrar_servico"
+                android:id="@+id/btn_alterar_promocao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:text="Cadastrar"
+                android:text="Alterar"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />

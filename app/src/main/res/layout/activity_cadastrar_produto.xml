@@ -13,7 +13,8 @@
         android:padding="20dp"
         >
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/image_produto"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@drawable/image_default_servicos"/>
         <com.google.android.material.textfield.TextInputLayout
@@ -24,6 +25,7 @@
             android:textColorHint="#000000"
             >
             <EditText
+                android:id="@+id/txt_titulo_produto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -41,6 +43,7 @@
             android:textColorHint="#000000"
             >
             <EditText
+                android:id="@+id/txt_descricao_produto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -50,28 +53,30 @@
                 android:inputType="textPersonName"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/componentes_cadastro"
-            android:text="Marca"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:hint="Marca"
+            android:textColorHint="#000000"
+            >
+            <EditText
+                android:id="@+id/txt_marca_produto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#000000"
+                android:drawablePadding="@dimen/espaco_ic"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinner_cadastro_servicos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:ems="10"
-            android:hint="Tamanho"
-            android:inputType="textPersonName"
-            android:textColorHint="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -82,6 +87,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
+                    android:id="@+id/txt_qtd_estoque"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -100,6 +106,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
+                    android:id="@+id/txt_alerta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -124,6 +131,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
+                    android:id="@+id/txt_valor_produto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -142,6 +150,7 @@
                 android:layout_weight="1"
                 >
                 <EditText
+                    android:id="@+id/txt_custo_produto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -177,6 +186,7 @@
                 />
 
             <Button
+                android:id="@+id/btn_cadastrar_produto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

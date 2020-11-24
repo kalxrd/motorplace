@@ -5,24 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.example.motorplace.R
-import com.example.motorplace.adapter.ServicosAdmAdapter
-import com.example.motorplace.model.Servico
-import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_servicos_adm.view.*
-import java.util.*
+import com.example.motorplace.adapter.TabsAdmAdapter
+import com.ogaclejapan.smarttablayout.SmartTabLayout
+
 
 
 class ServicosAdmFragment : Fragment(){
-    private lateinit var recyclerViewServicos: RecyclerView
-    private var servicos = arrayListOf<Servico>()
-    private lateinit var adapterServico: ServicosAdmAdapter
-    private lateinit var servicosRecuperados : DatabaseReference
-    private lateinit var servicosExcluidos : DatabaseReference
-
+    private lateinit var viewPagerTabs: ViewPager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,46 +21,15 @@ class ServicosAdmFragment : Fragment(){
         // Inflate the layout for this fragment
         val view:View =  inflater.inflate(R.layout.fragment_servicos_adm, container, false)
 
-        //criacao do spinner
-        val spinnerFiltro = resources.getStringArray(R.array.filtro) //recupera o array do string.xml
-        view.spinner_filtro_adm.setAdapter(
-            ArrayAdapter(view.context,R.layout.support_simple_spinner_dropdown_item, spinnerFiltro)
-        ) //seta o adapter no spinner
+        viewPagerTabs = view.findViewById(R.id.viewPagerAdm)
 
-        servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
-        servicosExcluidos =  FirebaseDatabase.getInstance().reference.child("servicosSolicitados")
 
-        recyclerViewServicos = view.findViewById(R.id.recyclerView)
-        recyclerViewServicos.layoutManager = LinearLayoutManager(view.context)
-        recyclerViewServicos.hasFixedSize()
+        val fragmentAdapter = TabsAdmAdapter(childFragmentManager)
+        viewPagerTabs.adapter = fragmentAdapter
+        val viewPagerTab = view.findViewById(R.id.vie_adm) as SmartTabLayout
+        viewPagerTab.setViewPager(viewPagerTabs)
 
-        adapterServico = ServicosAdmAdapter(view.context!!,servicos,servicosRecuperados,servicosExcluidos)
-
-        recyclerViewServicos.adapter = adapterServico
-
-        //recupera dados
-        recuperarServico()
 
         return view
-    }
-
-
-    private fun recuperarServico(){
-        servicosRecuperados.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-            }
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                servicos.clear()
-                for (d in dataSnapshot.children){
-                    var u = d.getValue(Servico::class.java)
-                    servicos.add(u!!)
-                }
-
-                Collections.reverse(servicos)
-                adapterServico.notifyDataSetChanged()
-            }
-
-        })
-
     }
 }

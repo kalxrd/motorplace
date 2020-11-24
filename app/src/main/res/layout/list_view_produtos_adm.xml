@@ -3,118 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
+            android:id="@+id/image_produtos_adm_list"
+            android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/oleo_1" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_gravity="center"
             >
-            <LinearLayout
+            <TextView
+                android:id="@+id/txt_titulo_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:text="Oleo Lubrificante Lubrax"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:text="Estoque: "/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:layout_marginLeft="3dp"
-                        android:text="50"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:text="Valor:"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:layout_marginLeft="3dp"
-                        android:text="R$15,00"/>
+                android:textColor="@android:color/black"
+                android:textSize="16dp"
+                android:text="Troca de óleo"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:text="Custo:"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:layout_marginLeft="3dp"
-                        android:text="R$5,00"/>
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/txt_valor_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="50,00"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:orientation="horizontal"
-                android:gravity="bottom"
+                android:gravity="end"
                 >
+
                 <ImageButton
-                    android:layout_width="match_parent"
+                    android:id="@+id/btn_editar_produto"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_editar"
+                    android:layout_marginRight="20dp"
                     android:background="@android:color/transparent"
-                    android:layout_weight="1"
-                    />
+                    android:src="@drawable/ic_editar" />
                 <ImageButton
-                    android:layout_width="match_parent"
+                    android:id="@+id/btn_excluir_produto"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_excluir"
                     android:background="@android:color/transparent"
-                    android:layout_weight="1"
-                    />
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_more"
-                    android:background="@android:color/transparent"
-                    android:layout_weight="1"
                     />
             </LinearLayout>
         </LinearLayout>

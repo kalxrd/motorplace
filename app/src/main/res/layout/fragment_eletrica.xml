@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.cliente.PinturaFragment">
+    tools:context=".fragments.cliente.EletricaFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_pintura_cliente"
+                android:id="@+id/recycler_eletrica_cliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -38,3 +38,4 @@
     </ScrollView>
 
 </FrameLayout>
+

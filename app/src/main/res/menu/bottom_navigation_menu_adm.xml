@@ -15,7 +15,7 @@
         />
     <item
         android:id="@+id/navigation_produtos_adm"
-        android:title="Produtos"
+        android:title="Loja"
         android:enabled="true"
         android:icon="@drawable/ic_carrinho"
         />

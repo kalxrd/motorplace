@@ -13,7 +13,8 @@ import com.example.motorplace.model.Servico
 import com.google.firebase.database.*
 import java.util.*
 
-class RevisoesFragment : Fragment() {
+
+class EletricaFragment : Fragment() {
     private lateinit var recyclerViewServicos: RecyclerView
     private var servicos = arrayListOf<Servico>()
     private lateinit var adapterServico: ServicosAdapter
@@ -23,11 +24,11 @@ class RevisoesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view : View = inflater.inflate(R.layout.fragment_revisoes, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_eletrica, container, false)
 
         servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
 
-        recyclerViewServicos = view.findViewById(R.id.recycler_servicos_cliente)
+        recyclerViewServicos = view.findViewById(R.id.recycler_eletrica_cliente)
         recyclerViewServicos.layoutManager =  StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerViewServicos.hasFixedSize()
 
@@ -49,7 +50,7 @@ class RevisoesFragment : Fragment() {
                 servicos.clear()
                 for (d in dataSnapshot.children){
                     val u = d.getValue(Servico::class.java)
-                    if(u!!.categoria.equals("Revisão e Manutenção")){
+                    if(u!!.categoria.equals("Eletrica")){
                         servicos.add(u!!)
                     }
                 }
