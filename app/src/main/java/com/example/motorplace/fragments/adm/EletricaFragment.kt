@@ -54,7 +54,7 @@ class EletricaFragment : Fragment() {
                 servicos.clear()
                 for (d in dataSnapshot.children){
                     var u = d.getValue(Servico::class.java)
-                    if(u!!.categoria.equals("Eletrica")){
+                    if(u!!.categoria.equals("Eletrica") && !u!!.custo.isEmpty()){
                         servicos.add(u!!)
                     }
 

@@ -13,7 +13,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import com.example.motorplace.R
-import com.example.motorplace.model.Promocao
+import com.example.motorplace.model.Servico
 import com.example.motorplace.util.MoneyTextWatcher
 import com.example.motorplace.util.Permissao
 import com.google.firebase.database.DatabaseReference
@@ -134,11 +134,11 @@ class EditarPromocaoActivity : AppCompatActivity() {
         pd.setMessage("Salvando...")
         pd.show()
 
-        val promocao = Promocao()
+        val promocao = Servico()
         promocao.titulo = titulo.text.toString()
         promocao.descricao = descricao.text.toString()
         promocao.prazo = prazo.text.toString()
-        promocao.oferta = oferta.text.toString()
+        promocao.valor = oferta.text.toString()
         promocao.foto = foto
         promocao.categoria = categoria
         promocao.id = data.getString("id")!!
@@ -146,16 +146,16 @@ class EditarPromocaoActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance().reference
 
 
-        atualizarValores( database.child("promocoes").child(data.getString("id")!!),promocao)
+        atualizarValores( database.child("servicos").child(data.getString("id")!!),promocao)
     }
 
-    fun atualizarValores(ref : DatabaseReference, promocao: Promocao){
+    fun atualizarValores(ref : DatabaseReference, promocao: Servico){
         ref.child("categoria").setValue(promocao.categoria)
         ref.child("prazo").setValue(promocao.prazo)
         ref.child("descricao").setValue(promocao.descricao)
         ref.child("id").setValue(promocao.id)
         ref.child("titulo").setValue(promocao.titulo)
-        ref.child("oferta").setValue(promocao.oferta).addOnCompleteListener {
+        ref.child("valor").setValue(promocao.valor).addOnCompleteListener {
             if(it.isSuccessful){
                 if (imagem != null){
                     salvarFoto(ref,data.getString("id")!!)
@@ -184,9 +184,9 @@ class EditarPromocaoActivity : AppCompatActivity() {
         //Salvar no Firebase
         val imagemRef = storageReference
             .child("imagens")
-            .child("promocoes")
+            .child("servicos")
             .child(id)
-            .child("promocao.jpeg")
+            .child("servico.jpeg")
 
         val uploadTask = imagemRef.putBytes(dadosImagem)
         uploadTask.addOnFailureListener{

@@ -12,11 +12,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <CalendarView
+            android:orientation="vertical">
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:padding="30dp"
+                android:textSize="16dp"
+                android:text="Confira no calendário abaixo as serviços  solicitados por seus clientes"
+                android:textColor="@android:color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#800000"
+                android:padding="30dp"
+                >
+                <TextView
+                    android:id="@+id/mes_calendario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp"
+                    android:text="Data"/>
+            </LinearLayout>
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/compactcalendar_view"
+                android:layout_width="fill_parent"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_height="250dp"
+                app:compactCalendarTargetHeight="250dp"
+                app:compactCalendarTextSize="12sp"
+                app:compactCalendarBackgroundColor="#FFFFFF"
+                app:compactCalendarTextColor="#000000"
+                app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+                app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+                app:compactCalendarMultiEventIndicatorColor="#fff"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_calendario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
                 />
         </LinearLayout>
     </ScrollView>

@@ -13,12 +13,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motorplace.R
 import com.example.motorplace.activitys.EditarPromocaoActivity
-import com.example.motorplace.model.Promocao
+import com.example.motorplace.model.Servico
 import com.google.firebase.database.DatabaseReference
 import com.squareup.picasso.Picasso
 import kotlin.collections.ArrayList
 
-class ServicosPromocoesAdm (private val context: Context, private val listPromocoes: ArrayList<Promocao>, private val promocaosRecuperados:DatabaseReference) : RecyclerView.Adapter<ServicosPromocoesAdm.MyViewHolder>(){
+class ServicosPromocoesAdm (private val context: Context, private val listPromocoes: ArrayList<Servico>, private val promocaosRecuperados:DatabaseReference) : RecyclerView.Adapter<ServicosPromocoesAdm.MyViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_servicos_adm,viewGroup,false)
@@ -33,7 +33,7 @@ class ServicosPromocoesAdm (private val context: Context, private val listPromoc
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
         val promocao = listPromocoes.get(i)
         myViewHolder.titulo.text = promocao.titulo
-        myViewHolder.valor.text = promocao.oferta
+        myViewHolder.valor.text = promocao.valor
 
 
         //metodo de click
@@ -43,7 +43,7 @@ class ServicosPromocoesAdm (private val context: Context, private val listPromoc
             intent.putExtra("descricao",promocao.descricao)
             intent.putExtra("categoria",promocao.categoria)
             intent.putExtra("prazo",promocao.prazo)
-            intent.putExtra("oferta",promocao.oferta)
+            intent.putExtra("oferta",promocao.valor)
             intent.putExtra("id",promocao.id)
             intent.putExtra("foto",promocao.foto)
 

@@ -53,7 +53,7 @@ class RevisoesFragment : Fragment() {
                 servicos.clear()
                 for (d in dataSnapshot.children){
                     var u = d.getValue(Servico::class.java)
-                    if(u!!.categoria.equals("Revisão e Manutenção")){
+                    if(u!!.categoria.equals("Revisão e Manutenção") && !u!!.custo.isEmpty()){
                         servicos.add(u!!)
                     }
 

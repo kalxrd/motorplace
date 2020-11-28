@@ -13,7 +13,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.*
 import com.example.motorplace.R
-import com.example.motorplace.model.Promocao
+import com.example.motorplace.model.Servico
 import com.example.motorplace.util.MoneyTextWatcher
 import com.example.motorplace.util.Permissao
 import com.google.firebase.auth.FirebaseAuth
@@ -124,11 +124,11 @@ class CadastroPromocaoActivity : AppCompatActivity() {
         }else if(valido && imagem == null){
             Toast.makeText(this, "Selecione uma Foto", Toast.LENGTH_SHORT).show()
         }else if(valido && !pgtCategoria.isEmpty() && !(imagem == null)){
-            val promocao  = Promocao()
+            val promocao  = Servico()
             promocao.titulo = titulo
             promocao.descricao = descricao
             promocao.categoria = pgtCategoria
-            promocao.oferta = oferta
+            promocao.valor = oferta
             promocao.prazo = prazo
 
             salvar(promocao)
@@ -245,12 +245,12 @@ class CadastroPromocaoActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
-    fun salvar(promocao: Promocao){
+    fun salvar(promocao: Servico){
         val pd = ProgressDialog(this)
         pd.setMessage("Salvando...")
         pd.show()
 
-        val produtoRef = database.child("promocoes")
+        val produtoRef = database.child("servicos")
         var id = produtoRef.push().key
         produtoRef.child(id!!).setValue(promocao).addOnCompleteListener {
             if(it.isSuccessful){
@@ -269,9 +269,9 @@ class CadastroPromocaoActivity : AppCompatActivity() {
         //Salvar no Firebase
         val imagemRef = storageReference
             .child("imagens")
-            .child("promocoes")
+            .child("servicos")
             .child(id)
-            .child("promocao.jpeg")
+            .child("servico.jpeg")
 
         val uploadTask = imagemRef.putBytes(dadosImagem)
         uploadTask.addOnFailureListener{

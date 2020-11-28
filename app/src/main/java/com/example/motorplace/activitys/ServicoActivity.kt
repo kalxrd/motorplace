@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.motorplace.R
 import com.example.motorplace.model.ServicosSolicitados
 import com.example.motorplace.util.carroAtual
+import com.example.motorplace.util.userAtual
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
@@ -206,6 +207,7 @@ class ServicoActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             servicos.idServico = dados.getString("id")!!
             servicos.data = txtDia.text.toString()
             servicos.hora = txtHora.text.toString()
+            servicos.nomeCliente = userAtual.nome
 
             val idServicosSolicitados =  database.child("servicosSolicitados").push().key
             servicos.id = idServicosSolicitados.toString()

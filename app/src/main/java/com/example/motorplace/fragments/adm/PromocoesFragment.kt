@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.motorplace.R
 import com.example.motorplace.adapter.ServicosPromocoesAdm
-import com.example.motorplace.model.Promocao
+import com.example.motorplace.model.Servico
 import com.google.firebase.database.*
 import java.util.*
 
 class PromocoesFragment : Fragment() {
     private lateinit var recyclerViewServicos: RecyclerView
-    private var servicos = arrayListOf<Promocao>()
+    private var servicos = arrayListOf<Servico>()
     private lateinit var adapterServico: ServicosPromocoesAdm
     private lateinit var servicosRecuperados : DatabaseReference
     private lateinit var servicosExcluidos : DatabaseReference
@@ -26,7 +26,8 @@ class PromocoesFragment : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_promocoes, container, false)
 
-        servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("promocoes")
+        
+        servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
 
 
         recyclerViewServicos = view.findViewById(R.id.recycler_promocoes_cliente)
@@ -40,6 +41,8 @@ class PromocoesFragment : Fragment() {
         //recupera dados
         recuperarServico()
 
+         
+
         return view
     }
 
@@ -51,9 +54,10 @@ class PromocoesFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 servicos.clear()
                 for (d in dataSnapshot.children){
-                    var u = d.getValue(Promocao::class.java)
-                    servicos.add(u!!)
-
+                    var u = d.getValue(Servico::class.java)
+                    if(!u!!.prazo.isEmpty()){
+                        servicos.add(u!!)
+                    }
 
                 }
 

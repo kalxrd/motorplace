@@ -54,7 +54,7 @@ class PinturaFragment : Fragment() {
                 servicos.clear()
                 for (d in dataSnapshot.children){
                     var u = d.getValue(Servico::class.java)
-                    if(u!!.categoria.equals("Pintura e Funilária")){
+                    if(u!!.categoria.equals("Pintura e Funilária") && !u!!.custo.isEmpty()){
                         servicos.add(u!!)
                     }
 

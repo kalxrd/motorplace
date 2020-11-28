@@ -27,12 +27,15 @@ class Servico(
     var descricao : String = "",
     var categoria: String = "",
     var valor : String = "",
-    var custo: String = ""
+    var custo: String = "",
+    var prazo: String = ""
 )
 
 class ServicosSolicitados(
     var idCliente : String = "",
+    var nomeCliente : String = "",
     var idServico : String = "",
+    var diaSemana : String = "",
     var data : String ="",
     var hora : String ="",
     var id:String = ""
@@ -50,12 +53,3 @@ class Produto(
     var custo: String = ""
 )
 
-class Promocao(
-    var id : String = "",
-    var titulo : String = "",
-    var foto : String = "",
-    var descricao : String = "",
-    var categoria: String = "",
-    var oferta : String = "",
-    var prazo: String = ""
-)

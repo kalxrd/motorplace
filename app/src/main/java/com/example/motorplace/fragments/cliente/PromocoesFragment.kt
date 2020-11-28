@@ -49,7 +49,7 @@ class PromocoesFragment : Fragment() {
                 servicos.clear()
                 for (d in dataSnapshot.children){
                     val u = d.getValue(Servico::class.java)
-                    if(u!!.categoria.equals("Promocoes")){
+                    if(!u!!.prazo.isEmpty()){
                         servicos.add(u!!)
                     }
                 }
