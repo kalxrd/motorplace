@@ -5,10 +5,7 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.motorplace.R
-import com.example.motorplace.fragments.cliente.AgendaFragment
-import com.example.motorplace.fragments.cliente.HomeFragment
-import com.example.motorplace.fragments.cliente.PerfilFragment
-import com.example.motorplace.fragments.cliente.ServicosFragment
+import com.example.motorplace.fragments.cliente.*
 import com.example.motorplace.model.Carro
 import com.example.motorplace.model.Usuario
 import com.example.motorplace.util.carroAtual
@@ -103,6 +100,12 @@ class TelaHomeCliente : AppCompatActivity() {
                     trocarFragment(AgendaFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
+                R.id.navigation_produtos -> {
+                    supportActionBar!!.title = "Loja"
+                    trocarFragment(ProdutosFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+
                 R.id.navigation_servicos -> {
                     supportActionBar!!.title = "Serviços"
                     trocarFragment(ServicosFragment())

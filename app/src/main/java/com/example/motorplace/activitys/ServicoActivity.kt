@@ -230,7 +230,21 @@ class ServicoActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        txtDia.text = dayOfMonth.toString() + (monthOfYear+1).toString() + year.toString()
+        var dia = ""
+        var mes = ""
+        if(dayOfMonth < 10){
+            dia = "0"+dayOfMonth.toString()
+        }else{
+            dia = dayOfMonth.toString()
+        }
+
+        if ((monthOfYear+1) < 10){
+            mes = "0"+(monthOfYear+1).toString()
+        }else{
+            mes = (monthOfYear+1).toString()
+        }
+
+        txtDia.text = dia + mes + year.toString()
     }
 
     override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {

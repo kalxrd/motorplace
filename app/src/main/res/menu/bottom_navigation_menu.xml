@@ -12,6 +12,12 @@
         android:icon="@drawable/ic_servicos"
         android:title="Serviços"/>
     <item
+        android:id="@+id/navigation_produtos"
+        android:title="Loja"
+        android:enabled="true"
+        android:icon="@drawable/ic_carrinho"
+        />
+    <item
         android:id="@+id/navigation_agenda"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_date_range_24"
