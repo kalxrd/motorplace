@@ -16,7 +16,7 @@
     <string name="pesquisar">Pesquisar</string>
 
     <string-array name="filtro">
-        <item></item>
+        <item>Todas as categorias</item>
         <item>Revisão e Manutenção</item>
         <item>Pintura e Funilária</item>
         <item>Eletrica</item>

@@ -91,7 +91,7 @@ class AgendaAdmFragment : Fragment() {
         for (x in 0 until datasSolicitadas.size){
             var c = Calendar.getInstance()
             c.set(datasSolicitadas.get(x).substring(6,10).toInt(),datasSolicitadas.get(x).substring(3,5).toInt()-1, datasSolicitadas.get(x).substring(0,2).toInt())
-            var ev1 = Event(Color.RED, c.timeInMillis, "Teachers' Professional Day")
+            var ev1 = Event(Color.rgb(128,0,0), c.timeInMillis, "Teachers' Professional Day")
             compactCalendar.addEvent(ev1)
         }
     }

@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="30dp"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_marginLeft="20dp"
     >
-    <TextView
-        android:id="@+id/list_dia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="16dp"
-        android:text="Sexta-feira, 13 de outubro"/>
-    <TextView
-        android:id="@+id/list_titulo_servico"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="16dp"
-        android:text="Serviço: Troca de pneu furado"/>
+        android:layout_marginRight="20dp"
+        android:src="#800000"
+        app:civ_border_color="@android:color/black"
+        app:civ_border_overlay="true"
+        app:civ_border_width="1dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/list_dia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:text="Sexta-feira, 13 de outubro"/>
+        <TextView
+            android:id="@+id/list_titulo_servico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:text="Serviço: Troca de pneu furado"/>
 
-    <TextView
-        android:id="@+id/list_hora"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/black"
-        android:textSize="16dp"
-        android:text="Hora de solicitação: 14:25h"/>
-    <TextView
-        android:id="@+id/calendar_nome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="10dp"
-        android:textSize="16dp"
-        android:text="Cliente: Gabriel Pepes"/>
+        <TextView
+            android:id="@+id/list_hora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:text="Hora de solicitação: 14:25h"/>
+        <TextView
+            android:id="@+id/calendar_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:text="Cliente: Gabriel Pepes"/>
 
-    <View
-        android:layout_height="2dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="fill_parent"
-        android:background="#E9E4E4" />
+        <View
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="fill_parent"
+            android:background="#E9E4E4" />
+    </LinearLayout>
+
 </LinearLayout>

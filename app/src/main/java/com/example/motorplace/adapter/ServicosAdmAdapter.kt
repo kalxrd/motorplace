@@ -98,7 +98,6 @@ class ServicosAdmAdapter (private val context: Context, private val listServicos
     fun apagar(id: String){
         servicosRecuperados.child(id).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
-               // procurarSolicitacao(id)
                 Toast.makeText(context,"Serviço excluido com succeso",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context,"Erro ao excluir o serviço!",Toast.LENGTH_SHORT).show()
@@ -106,20 +105,5 @@ class ServicosAdmAdapter (private val context: Context, private val listServicos
         }
     }
 
-    private fun procurarSolicitacao(idServico:String){
-        servicosExcluidos.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-            }
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (d in dataSnapshot.children){
-                    val u = d.getValue(ServicosSolicitados::class.java)
-                    if(u!!.idServico== idServico){
 
-                    }
-                }
-            }
-
-        })
-
-    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.cliente.PromocoesFragment">
@@ -14,17 +15,46 @@
             android:layout_marginLeft="10dp"
             android:gravity="end"
             android:orientation="vertical">
-            <EditText
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="15dp"
                 android:layout_margin="15dp"
-                android:drawableStart="@drawable/ic_lupa_pesquisar"
-                android:drawablePadding="5dp"
-                android:background="@drawable/edit_pesquisar"
-                android:elevation="5dp"
-                android:hint="Pesquise aqui"
-                />
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <Spinner
+                        android:id="@+id/spinner_filtro_promocoes_adm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Filtro"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/corBotaoVemerlho"
+                        android:layout_marginRight="10dp"
+                        android:textSize="18dp"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
             <androidx.recyclerview.widget.RecyclerView
