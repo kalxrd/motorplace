@@ -51,6 +51,7 @@ class ProdutosAdmAdapter (private val context: Context, private val listProdutos
             intent.putExtra("custo",produto.custo)
             intent.putExtra("id",produto.id)
             intent.putExtra("foto",produto.foto)
+            intent.putExtra("categoria",produto.categoria)
 
             context.startActivity(intent)
         }

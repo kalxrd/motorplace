@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.CadastrarProdutoActivity">
+    tools:context=".activitys.EditarProdutoAdmActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,6 +72,23 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/componentes_cadastro"
+            android:text="Categoria"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spinner_produtos_editar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:ems="10"
+            android:hint="Tamanho"
+            android:inputType="textPersonName"
+            android:textColorHint="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"

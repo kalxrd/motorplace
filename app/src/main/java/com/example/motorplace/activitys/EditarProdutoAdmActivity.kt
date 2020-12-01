@@ -6,9 +6,11 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.*
 import com.example.motorplace.R
 import com.example.motorplace.model.Produto
@@ -33,6 +35,7 @@ class EditarProdutoAdmActivity : AppCompatActivity() {
     private lateinit var valor: TextView
     private lateinit var custo: TextView
     private lateinit var foto : String
+    private  var categoria : String = ""
     private lateinit var imagemPerfil: ImageView
     private val permisssaoCamera= arrayOf(Manifest.permission.CAMERA) //array com as permições que o app precisará (camera)
     private val permisssaoGaleria = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE) //array com as permições que o app precisará (Galeria)
@@ -87,6 +90,45 @@ class EditarProdutoAdmActivity : AppCompatActivity() {
         Picasso.get()
             .load(foto)
             .into(image_produto_editar)
+
+        //preenche os dados do spinner
+        val spinnerCategoria: Spinner = findViewById(R.id.spinner_produtos_editar)
+        ArrayAdapter.createFromResource(
+            this, R.array.categoria_produto, android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinnerCategoria.adapter = adapter
+        }
+
+        //verifica o spinner selecionado
+        spinnerCategoria.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                //(parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#bdbdbd"))
+                (parent.getChildAt(0) as TextView).setTypeface(Typeface.DEFAULT)
+                categoria = spinnerCategoria.getItemAtPosition(position).toString()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        })
+
+        val cat = data.getString("categoria")
+        if(cat.equals("Manutenção")){
+            spinnerCategoria.setSelection(1)
+            categoria = "Manutenção"
+        }else if(cat.equals("Limpeza")){
+            spinnerCategoria.setSelection(2)
+            categoria = "Limpeza"
+        }else if(cat.equals("Ferramentas")){
+            spinnerCategoria.setSelection(3)
+            categoria = "Ferramentas"
+        }
 
         var mLocale = Locale("pt", "BR")
         txt_valor_produto_editar.addTextChangedListener(MoneyTextWatcher(txt_valor_produto_editar,mLocale))
@@ -211,6 +253,7 @@ class EditarProdutoAdmActivity : AppCompatActivity() {
         produto.valor = valor.text.toString()
         produto.custo = custo.text.toString()
         produto.foto = foto
+        produto.categoria = categoria
         produto.id = data.getString("id")!!
 
         val database = FirebaseDatabase.getInstance().reference
@@ -223,6 +266,7 @@ class EditarProdutoAdmActivity : AppCompatActivity() {
         ref.child("alertaQtdMin").setValue(produto.alertaQtdMin)
         ref.child("custo").setValue(produto.custo)
         ref.child("descricao").setValue(produto.descricao)
+        ref.child("categoria").setValue(produto.categoria)
         ref.child("id").setValue(produto.id)
         ref.child("titulo").setValue(produto.titulo)
         ref.child("valor").setValue(produto.valor).addOnCompleteListener {

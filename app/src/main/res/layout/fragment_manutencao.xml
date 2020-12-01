@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.cliente.ManutencaoFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Encontre aqui os melhores produtos para o seu veículo"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:gravity="center"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_margin="15dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:drawableStart="@drawable/ic_lupa_pesquisar"
+                android:drawablePadding="5dp"
+                android:background="@drawable/edit_pesquisar"
+                android:elevation="5dp"
+                android:hint="Pesquise aqui"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_produtos_manutencao"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="80dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

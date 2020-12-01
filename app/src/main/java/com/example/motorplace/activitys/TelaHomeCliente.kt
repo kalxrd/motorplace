@@ -2,6 +2,7 @@ package com.example.motorplace.activitys
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.motorplace.R
@@ -13,7 +14,7 @@ import com.example.motorplace.util.userAtual
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_tela_home_cliente.*
-
+import kotlinx.android.synthetic.main.toolbar.*
 
 
 class TelaHomeCliente : AppCompatActivity() {
@@ -23,7 +24,9 @@ class TelaHomeCliente : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_home_cliente)
 
-        supportActionBar!!.title = "Feed"
+        supportActionBar!!.hide()
+
+
 
         inicializar()
         carregarDados()
@@ -33,6 +36,8 @@ class TelaHomeCliente : AppCompatActivity() {
 
         //habilita a navegação do botton navigation
         habilitarNavegacao()
+
+
     }
     private fun inicializar(){
         userAtual = Usuario()
@@ -91,28 +96,28 @@ class TelaHomeCliente : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_home -> {
-                    supportActionBar!!.title = "Feed"
+                    titulo_toolbar.text = "Feed"
                     trocarFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_agenda -> {
-                    supportActionBar!!.title = "Agenda"
+                    titulo_toolbar.text = "Agenda"
                     trocarFragment(AgendaFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_produtos -> {
-                    supportActionBar!!.title = "Loja"
+                    titulo_toolbar.text = "Loja"
                     trocarFragment(ProdutosFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.navigation_servicos -> {
-                    supportActionBar!!.title = "Serviços"
+                    titulo_toolbar.text = "Serviços"
                     trocarFragment(ServicosFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_perfil -> {
-                    supportActionBar!!.title = "Perfil"
+                    titulo_toolbar.text = "Perfil"
                     trocarFragment(PerfilFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -121,11 +126,11 @@ class TelaHomeCliente : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_toolbar, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.menu_toolbar, menu)
+//        return true
+//    }
 
     fun trocarFragment(fragment: Fragment){
         val fragmentTransaction = supportFragmentManager.beginTransaction()

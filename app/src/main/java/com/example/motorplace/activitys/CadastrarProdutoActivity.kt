@@ -6,15 +6,14 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.motorplace.R
 import com.example.motorplace.model.Produto
-import com.example.motorplace.model.Usuario
 import com.example.motorplace.util.MoneyTextWatcher
 import com.example.motorplace.util.Permissao
 import com.google.firebase.auth.FirebaseAuth
@@ -36,13 +35,21 @@ class CadastrarProdutoActivity : AppCompatActivity() {
     private val SELECAO_GALERIA = 200
     private var imagem: Bitmap? = null
     private lateinit var storageReference : StorageReference
-
+    private var pgtCategoria: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastrar_produto)
         supportActionBar!!.title ="Cadastrar produto"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        //criacao do spinner
+        val spinnerFiltro = resources.getStringArray(R.array.categoria_produto) //recupera o array do string.xml
+        spinner_cadastro_produto.setAdapter(
+            ArrayAdapter(
+                this,
+                R.layout.support_simple_spinner_dropdown_item, spinnerFiltro
+            )
+        ) //seta o adapter no spinner
         inicializar()
 
         image_produto.setOnClickListener {
@@ -58,6 +65,23 @@ class CadastrarProdutoActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         imagemPerfil = findViewById(R.id.image_produto)
         storageReference = FirebaseStorage.getInstance().reference
+
+        spinner_cadastro_produto.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                //(parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#bdbdbd"))
+                (parent.getChildAt(0) as TextView).setTypeface(Typeface.DEFAULT)
+                pgtCategoria =  spinner_cadastro_produto.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        })
 
         var mLocale = Locale("pt", "BR")
 
@@ -109,21 +133,23 @@ class CadastrarProdutoActivity : AppCompatActivity() {
         }
 
 
-        if(valido && imagem == null) {
+
+        if(valido && pgtCategoria.isEmpty()){
+            Toast.makeText(this, "Escolha uma categoria", Toast.LENGTH_SHORT).show()
+        }else if(valido && imagem == null){
             Toast.makeText(this, "Selecione uma Foto", Toast.LENGTH_SHORT).show()
-        }else{
-            if (valido){
+        }else if(valido && !pgtCategoria.isEmpty() && !(imagem == null)){
             val produto  = Produto()
             produto.titulo = titulo
             produto.descricao = descricao
             produto.marca = marca
+            produto.categoria = pgtCategoria
             produto.qtdEstoque = estoque
             produto.alertaQtdMin = alerta
             produto.valor = valor
             produto.custo = custo
 
             salvar(produto)
-            }
         }
 
     }

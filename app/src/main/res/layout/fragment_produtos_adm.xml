@@ -40,14 +40,14 @@
                     <Spinner
                         android:id="@+id/spinner_filtro_produtos_adm"
                         android:layout_width="wrap_content"
-                        android:layout_height="16dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center_vertical"
 
                         />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:orientation="horizontal"
                     android:gravity="end"
                     >
@@ -64,6 +64,7 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewProdutos"
                 android:layout_marginTop="15dp"

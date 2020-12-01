@@ -22,6 +22,13 @@
         <item>Eletrica</item>
     </string-array>
 
+    <string-array name="filtro_produto">
+        <item>Todas as categorias</item>
+        <item>Manutenção</item>
+        <item>Limpeza</item>
+        <item>Ferramentas</item>
+    </string-array>
+
     <string-array name="tamanho">
         <item></item>
         <item>Passeio/Leve</item>
@@ -34,6 +41,13 @@
         <item>Revisão e Manutenção</item>
         <item>Pintura e Funilária</item>
         <item>Eletrica</item>
+    </string-array>
+
+    <string-array name="categoria_produto">
+        <item></item>
+        <item>Manutenção</item>
+        <item>Limpeza</item>
+        <item>Ferramentas</item>
     </string-array>
 
 </resources>

@@ -47,6 +47,7 @@ class Produto(
     var foto : String = "",
     var descricao : String = "",
     var marca: String = "",
+    var categoria: String ="",
     var qtdEstoque: String = "",
     var alertaQtdMin: String = "",
     var valor : String = "",
