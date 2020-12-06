@@ -1,5 +1,6 @@
 package com.example.motorplace.activitys
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
@@ -33,11 +34,13 @@ class TelaHomeCliente : AppCompatActivity() {
         //seta o primeiro fragmente ao abrir a activity
         trocarFragment(HomeFragment())
 
-
         //habilita a navegação do botton navigation
         habilitarNavegacao()
 
 
+        button_carrinho.setOnClickListener {
+            startActivity(Intent(this,CarrinhoActivity::class.java))
+        }
     }
     private fun inicializar(){
         userAtual = Usuario()

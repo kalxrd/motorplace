@@ -50,4 +50,5 @@
         <item>Ferramentas</item>
     </string-array>
 
+    <string name="msg_favoritos">A sua lista de desejos \n está vazia!</string>
 </resources>

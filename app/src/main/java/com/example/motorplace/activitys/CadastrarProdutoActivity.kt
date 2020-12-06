@@ -88,6 +88,7 @@ class CadastrarProdutoActivity : AppCompatActivity() {
         txt_valor_produto.addTextChangedListener(MoneyTextWatcher(txt_valor_produto,mLocale))
         txt_custo_produto.addTextChangedListener(MoneyTextWatcher(txt_custo_produto,mLocale))
 
+
     }
 
     private fun veririfcaCampos(){

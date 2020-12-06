@@ -90,13 +90,7 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/desonto_pneu"/>
+
         </LinearLayout>
-
     </ScrollView>
-
 </FrameLayout>

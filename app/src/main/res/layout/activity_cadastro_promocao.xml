@@ -68,7 +68,7 @@
                 android:backgroundTint="#000000"
                 android:drawablePadding="@dimen/espaco_ic"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="phone"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
@@ -108,7 +108,7 @@
                 android:importantForAutofill="no"
                 app:met_mask="##/##/####"
                 tools:targetApi="o"
-                android:inputType="textPersonName"
+                android:inputType="phone"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

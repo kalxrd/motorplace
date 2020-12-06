@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.motorplace.R
 import com.example.motorplace.activitys.AtualizarCarroActivity
 import com.example.motorplace.activitys.AtualizarDadosActivity
+import com.example.motorplace.activitys.SobreActivity
 import com.example.motorplace.activitys.TelaDeEntradaActivity
 import com.example.motorplace.util.userAtual
 import com.google.firebase.auth.FirebaseAuth
@@ -45,6 +46,10 @@ class PerfilFragment : Fragment() {
 
         view.btn_atualizar_carro.setOnClickListener {
             startActivity(Intent(context,AtualizarCarroActivity::class.java))
+        }
+
+        view.btn_sobre.setOnClickListener {
+            startActivity(Intent(context,SobreActivity::class.java))
         }
 
         return view

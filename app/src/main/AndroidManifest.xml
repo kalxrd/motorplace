@@ -17,6 +17,25 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activitys.ServicoAgendadoActivity" android:parentActivityName=".activitys.TelaHomeCliente"></activity>
+        <activity
+            android:name=".activitys.SobreActivity"
+            android:parentActivityName=".activitys.TelaHomeCliente" />
+        <activity
+            android:name=".activitys.CarrinhoActivity"
+            android:parentActivityName=".activitys.TelaHomeCliente" />
+        <activity
+            android:name=".activitys.OrcamentoActivity"
+            android:parentActivityName=".activitys.TelaHomeCliente" />
+        <activity
+            android:name=".activitys.FavoritosProdutosActivity"
+            android:parentActivityName=".activitys.FavoritosActivity" />
+        <activity
+            android:name=".activitys.FavoritosServicosActivity"
+            android:parentActivityName=".activitys.FavoritosActivity" />
+        <activity
+            android:name=".activitys.FavoritosActivity"
+            android:parentActivityName=".activitys.TelaHomeCliente" />
         <activity
             android:name=".activitys.EditarPromocaoActivity"
             android:parentActivityName=".activitys.HomeAdmActivity" />

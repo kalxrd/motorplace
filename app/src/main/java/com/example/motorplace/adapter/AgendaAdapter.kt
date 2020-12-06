@@ -2,6 +2,7 @@ package com.example.motorplace.adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motorplace.R
+import com.example.motorplace.activitys.ServicoAgendadoActivity
 import com.example.motorplace.model.Servico
 import com.example.motorplace.model.ServicosSolicitados
 import com.google.firebase.database.DatabaseReference
@@ -39,6 +41,18 @@ class AgendaAdapter (private val context: Context, private val listServicos: Arr
         //metodo de click
         myViewHolder.excluir.setOnClickListener {
             confirmarExclusao(myViewHolder,servico.id,servico2.id)
+        }
+
+        myViewHolder.itemView.setOnClickListener {
+            val intent = Intent(context,ServicoAgendadoActivity::class.java)
+            intent.putExtra("titulo",servico.titulo)
+            intent.putExtra("valor",servico.valor)
+            intent.putExtra("data",servico2.data)
+            intent.putExtra("hora",servico2.hora)
+
+            intent.putExtra("foto",servico.foto)
+
+            context.startActivity(intent)
         }
 
         //pega a primeira imagem da lista

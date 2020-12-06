@@ -54,3 +54,7 @@ class Produto(
     var custo: String = ""
 )
 
+class Favorito(
+    var favorito : String = "",
+)
+
