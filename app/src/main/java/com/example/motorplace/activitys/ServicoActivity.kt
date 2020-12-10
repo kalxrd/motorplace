@@ -1,8 +1,14 @@
 package com.example.motorplace.activitys
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
@@ -10,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.motorplace.R
+import com.example.motorplace.adapter.AgendaAdapter
 import com.example.motorplace.model.ServicosSolicitados
 import com.example.motorplace.util.carroAtual
 import com.example.motorplace.util.userAtual
@@ -19,6 +26,9 @@ import com.squareup.picasso.Picasso
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import kotlinx.android.synthetic.main.activity_servico.*
+import java.io.BufferedOutputStream
+import java.io.FileNotFoundException
+import java.io.IOException
 import java.util.*
 
 
@@ -36,6 +46,8 @@ class ServicoActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private var minuto =0
     private lateinit var txtDia :TextView
     private lateinit var txtHora :TextView
+    private val CREATEPDF = 1
+    private val servicos = ServicosSolicitados()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -202,7 +214,7 @@ class ServicoActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             pd.setMessage("Salvando...")
             pd.show()
 
-            val servicos = ServicosSolicitados()
+
             servicos.idCliente = carroAtual.idUsuario
             servicos.idServico = dados.getString("id")!!
             servicos.data = txtDia.text.toString()
@@ -216,16 +228,132 @@ class ServicoActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                 idServicosSolicitados.toString()
             ).setValue(servicos).addOnCompleteListener {
                 if(it.isSuccessful){
-                    val intent = Intent(this, TelaHomeCliente::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    baixarPdf()
                     Toast.makeText(this, "Serviço solicitado com Sucesso", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
                 }
 
             }
         }else{
             Toast.makeText(this, "Preencha todos os dados", Toast.LENGTH_SHORT).show();
+        }
+    }
+    fun baixarPdf(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Download")
+        builder.setMessage("Você deseja baixar o pdf do seu orçamento ?")
+        builder.setCancelable(false)
+
+        builder.setPositiveButton("Sim" ){ dialogInterface, i -> criarPdf("Orçamento")}
+
+        builder.setNegativeButton("Não"){dialogInterface, i -> finish()}
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    fun criarPdf(title: String?) {
+        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = "application/pdf"
+        intent.putExtra(Intent.EXTRA_TITLE, title)
+        startActivityForResult(intent, CREATEPDF)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CREATEPDF) {
+            if (data!!.data != null) {
+                val caminhDoArquivo: Uri? = data.data
+
+                val pdfDocument = PdfDocument()
+                val paint = Paint()
+                val pageInfo = PdfDocument.PageInfo.Builder(1240, 1754, 1).create()
+                val page = pdfDocument.startPage(pageInfo)
+                val canvas: Canvas = page.canvas
+                paint.setTextAlign(Paint.Align.CENTER)
+                paint.setTextSize(50f)
+                paint.setFakeBoldText(true)
+                canvas.drawText("Motor Place", (pageInfo.pageWidth/2).toFloat(), 80.toFloat(), paint)
+                paint.setTextSize(40f)
+                canvas.drawText("Agendamento de veículo", (pageInfo.pageWidth/2).toFloat(), 180.toFloat(), paint)
+                paint.setTextAlign(Paint.Align.LEFT)
+                paint.setTextSize(30f)
+                paint.setFakeBoldText(false)
+
+
+
+                canvas.drawLine(50.toFloat(), 110.toFloat(), (pageInfo.pageWidth - 100).toFloat(), 110.toFloat(), paint)
+                canvas.drawLine(50.toFloat(), 210.toFloat(), (pageInfo.pageWidth - 100).toFloat(), 210.toFloat(), paint)
+                canvas.drawLine(50.toFloat(), 520.toFloat(), (pageInfo.pageWidth - 100).toFloat(), 520.toFloat(), paint)
+                canvas.drawLine(50.toFloat(), 670.toFloat(), (pageInfo.pageWidth - 100).toFloat(), 670.toFloat(), paint)
+                canvas.drawLine(50.toFloat(), 770.toFloat(), (pageInfo.pageWidth - 100).toFloat(), 770.toFloat(), paint)
+
+
+
+                paint.setFakeBoldText(true)
+                canvas.drawText("Serviço solicitado:", 50.toFloat(), 580.toFloat(), paint)
+                paint.setFakeBoldText(false)
+                canvas.drawText(dados.getString("titulo")!!, 50.toFloat(), 630.toFloat(), paint)
+
+                paint.setFakeBoldText(true)
+                paint.setTextSize(40f)
+                canvas.drawText("Total:", 50.toFloat(), 730.toFloat(), paint)
+
+
+                paint.setTextSize(30f)
+                paint.setFakeBoldText(false)
+
+                paint.setTextAlign(Paint.Align.RIGHT)
+                canvas.drawText(userAtual.nome, (pageInfo.pageWidth - 100).toFloat(), 250.toFloat() +20 , paint)
+                canvas.drawText(userAtual.telefone,(pageInfo.pageWidth - 100).toFloat(), 300.toFloat() +20, paint)
+                val random = Random()
+                val num = random.nextInt(8000)
+
+                canvas.drawText(num.toString(), (pageInfo.pageWidth - 100).toFloat(), 350.toFloat() +20, paint)
+                canvas.drawText(carroAtual.modelo +" " + carroAtual.marca +" / "+ carroAtual.placa, (pageInfo.pageWidth - 100).toFloat(), 400.toFloat() +20, paint)
+                canvas.drawText(servicos.data+" - "+ txtHora.text.toString(),(pageInfo.pageWidth - 100).toFloat(), 450.toFloat() +20, paint)
+                paint.setFakeBoldText(true)
+                paint.setTextSize(40f)
+                canvas.drawText(valor.text.toString(), (pageInfo.pageWidth - 100).toFloat(), 730.toFloat(), paint)
+
+
+                paint.setTextAlign(Paint.Align.LEFT)
+                paint.color = Color.rgb(27,158,218)
+
+                canvas.drawText("Nome:", 50.toFloat(), 250.toFloat() +20 , paint)
+                canvas.drawText("Telefone:", 50.toFloat(), 300.toFloat() +20, paint)
+                canvas.drawText("Código:", 50.toFloat(), 350.toFloat() +20, paint)
+                canvas.drawText("Veículo/Placa:", 50.toFloat(), 400.toFloat() +20, paint)
+                canvas.drawText("Data/Hora entrada:", 50.toFloat(), 450.toFloat() +20, paint)
+
+                
+                pdfDocument.finishPage(page)
+                gravarPdf(caminhDoArquivo, pdfDocument)
+
+            }
+        }
+    }
+
+
+    private fun gravarPdf(caminhDoArquivo: Uri?, pdfDocument: PdfDocument) {
+        try {
+            val stream = BufferedOutputStream(
+                Objects.requireNonNull(
+                    contentResolver.openOutputStream(caminhDoArquivo!!)
+                )
+            )
+            pdfDocument.writeTo(stream)
+            pdfDocument.close()
+            stream.flush()
+            Toast.makeText(this, "PDF Gravado Com Sucesso", Toast.LENGTH_LONG).show()
+            finish()
+        } catch (e: FileNotFoundException) {
+            Toast.makeText(this, "Erro de arquivo não encontrado", Toast.LENGTH_LONG).show()
+        } catch (e: IOException) {
+            Toast.makeText(this, "Erro de entrada e saída", Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Erro desconhecido" + e.localizedMessage, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

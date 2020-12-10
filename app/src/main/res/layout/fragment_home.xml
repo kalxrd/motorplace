@@ -140,6 +140,15 @@
                             app:size="3"
                             app:spacing="10"
                             />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="PROMOÇÕES DISPONÍVEIS"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                                />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycler_promocoes_feed"

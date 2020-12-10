@@ -17,7 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.ServicoAgendadoActivity" android:parentActivityName=".activitys.TelaHomeCliente"></activity>
+        <activity android:name=".activitys.ProdutosDetalhesActivity" android:parentActivityName=".activitys.TelaHomeCliente"></activity>
+        <activity
+            android:name=".activitys.ServicoAgendadoActivity"
+            android:parentActivityName=".activitys.TelaHomeCliente" />
         <activity
             android:name=".activitys.SobreActivity"
             android:parentActivityName=".activitys.TelaHomeCliente" />

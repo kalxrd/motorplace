@@ -25,7 +25,7 @@ class HomeAdmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_adm)
 
-        supportActionBar!!.title = "Feed"
+        supportActionBar!!.title = "Relatórios"
 
         carregarDados()
         //verifica se ta na tela produtos ou serviços
@@ -47,7 +47,7 @@ class HomeAdmActivity : AppCompatActivity() {
         bottom_navigation_adm.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_home_adm -> {
-                    supportActionBar!!.title = "Feed"
+                    supportActionBar!!.title = "Relatórios"
                     fab_add.visibility = View.GONE
                     trocarFragment(HomeAdmFragment())
                     return@setOnNavigationItemSelectedListener true

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.adm.HomeAdmFragment">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,83 +13,266 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:text="Serviços"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="horizontal">
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                    android:textStyle="bold"
+               android:layout_weight="1"
+                android:text="Valor: "
+                />
+                <TextView
+                    android:id="@+id/valor_servicos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#800000"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:text="R$ 1500,00"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:text="Custo: "
+                    />
+                <TextView
+                    android:id="@+id/custo_servico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#800000"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:text="R$ 500,00"
+                    />
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:text="Lucro: "
+                    />
+                <TextView
+                    android:id="@+id/lucro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#800000"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:text="R$ 500,00"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Porcentagem do lucro sobre o valor total de todos os serviços"
+                android:textSize="15dp"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                >
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView1"
-                    android:layout_width="80dp"
-                    android:layout_height="60dp"
-                    android:src="@android:color/white"
-                    app:civ_border_color="@android:color/black"
-                    app:civ_border_overlay="true"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintEnd_toStartOf="@+id/circleImageView4"
-                    app:layout_constraintHorizontal_bias="0.5"
+                <ProgressBar
+                    android:id="@+id/progressCompleted"
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:foregroundTint="@color/colorAccent"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:progress="10"
+                    android:progressBackgroundTint="@color/colorAccent"
+                    android:progressTint="@color/corBotaoVemerlho"
+                    android:scaleY="5"
+                    android:secondaryProgressTint="@color/colorAccent"
+                    app:layout_constraintEnd_toStartOf="@+id/porcentagem"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView4"
-                    android:layout_width="80dp"
-                    android:layout_height="60dp"
-                    android:src="@android:color/white"
-                    app:civ_border_color="@android:color/black"
-                    app:civ_border_overlay="true"
-                    app:civ_border_width="2dp"
+                <TextView
+                    android:id="@+id/porcentagem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:text="70%"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#800000"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/circleImageView1"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/btn_cadastrar_promocao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_promocoes"
-                    app:layout_constraintBottom_toBottomOf="@+id/circleImageView1"
-                    app:layout_constraintEnd_toEndOf="@+id/circleImageView1"
-                    app:layout_constraintStart_toStartOf="@+id/circleImageView1"
-                    app:layout_constraintTop_toTopOf="@+id/circleImageView1" />
-
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_relatorio"
-                    app:layout_constraintBottom_toBottomOf="@+id/circleImageView4"
-                    app:layout_constraintEnd_toEndOf="@+id/circleImageView4"
-                    app:layout_constraintStart_toStartOf="@+id/circleImageView4"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="19dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Promoções"
-                    app:layout_constraintEnd_toEndOf="@+id/circleImageView1"
-                    app:layout_constraintStart_toStartOf="@+id/circleImageView1"
-                    app:layout_constraintTop_toBottomOf="@+id/circleImageView1" />
-
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="19dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Relatórios"
-                    app:layout_constraintEnd_toEndOf="@+id/circleImageView4"
-                    app:layout_constraintStart_toStartOf="@+id/circleImageView4"
-                    app:layout_constraintTop_toBottomOf="@+id/circleImageView4" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:layout_height="2dp"
+                android:layout_width="fill_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="40dp"
+                android:background="#000000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:text="Produtos"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"
+                    android:text="Valor: "
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/valor_produtos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#800000"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:text="R$ 1500,00"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"
+                    android:text="Custo: "
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/custo_produtos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#800000"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:text="R$ 500,00"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:text="Lucro: "
+                    />
+                <TextView
+                    android:id="@+id/lucro_produtos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#800000"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+
+                    android:text="R$ 500,00"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Porcentagem do lucro sobre o valor total de todos os produtos"
+                android:textSize="15dp"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="150dp"
+                >
+
+                <ProgressBar
+                    android:id="@+id/progressProdutos"
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:foregroundTint="@color/colorAccent"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:progress="10"
+                    android:progressBackgroundTint="@color/colorAccent"
+                    android:progressTint="@color/corBotaoVemerlho"
+                    android:scaleY="5"
+                    android:secondaryProgressTint="@color/colorAccent"
+                    app:layout_constraintEnd_toStartOf="@+id/porcentagem_produto"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/porcentagem_produto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:text="70%"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#800000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

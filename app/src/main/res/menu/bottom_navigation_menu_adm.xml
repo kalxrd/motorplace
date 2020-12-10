@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_home_adm"
-        android:title="Principal"
+        android:title="Relatórios"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         />

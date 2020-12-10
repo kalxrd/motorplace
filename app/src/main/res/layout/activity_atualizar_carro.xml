@@ -126,7 +126,7 @@
                 android:visibility="visible" />
 
             <Button
-                android:id="@+id/btn_salvar_carrro"
+                android:id="@+id/btn_finalizar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

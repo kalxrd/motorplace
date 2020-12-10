@@ -28,8 +28,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="16dp"
-                android:text="Troca de óleo"/>
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:text="Troca de óleo"
+                />
 
             <TextView
                 android:id="@+id/txt_valor_list"

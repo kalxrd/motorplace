@@ -44,8 +44,8 @@
             android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_carrinho"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="@+id/button_carrinho"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

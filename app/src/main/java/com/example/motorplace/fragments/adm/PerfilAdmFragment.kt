@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.motorplace.R
+import com.example.motorplace.activitys.CadastroPromocaoActivity
 import com.example.motorplace.activitys.TelaDeEntradaActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_perfil_adm.view.*
@@ -30,6 +31,10 @@ class PerfilAdmFragment : Fragment() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent)
+        }
+
+        view.adicionar_promocao.setOnClickListener {
+            startActivity(Intent(context, CadastroPromocaoActivity::class.java))
         }
 
         return view

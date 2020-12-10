@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motorplace.R
 import com.example.motorplace.activitys.EditarProdutoAdmActivity
+import com.example.motorplace.activitys.ProdutosDetalhesActivity
+import com.example.motorplace.activitys.ServicoActivity
 import com.example.motorplace.model.Produto
 import com.example.motorplace.model.Servico
 import com.example.motorplace.util.carroAtual
@@ -48,22 +50,22 @@ class ProdutosAdapter (private val context: Context, private val listProdutos: A
 
         myViewHolder.favorito.setOnClickListener {
             // Toast.makeText(context,myViewHolder.favorito.getdra.toString(),Toast.LENGTH_SHORT).show()
+
             adicionarFavorito(produtosFavorito,myViewHolder,produto)
         }
 
         myViewHolder.itemView.setOnClickListener{
-            adicionarCarrinho(produto.id)
+            val intent = Intent(context, ProdutosDetalhesActivity::class.java)
+            intent.putExtra("titulo",produto.titulo)
+            intent.putExtra("descricao",produto.descricao)
+            intent.putExtra("valor",produto.valor)
+            intent.putExtra("id",produto.id)
+            intent.putExtra("foto",produto.foto)
+            context.startActivity(intent)
         }
 
     }
 
-    fun adicionarCarrinho(id:String){
-        var database = FirebaseDatabase.getInstance().reference.child("usuarios").child(carroAtual.idUsuario).child("carrinho")
-
-        database.child(id).child("id").setValue(id)
-
-        Toast.makeText(context, "Produto adicionado no carrinho",Toast.LENGTH_SHORT).show()
-    }
 
     fun inicializar(favoritoReference: DatabaseReference, myViewHolder: ProdutosAdapter.MyViewHolder){
         favoritoReference.addValueEventListener(object : ValueEventListener {

@@ -43,7 +43,7 @@ class AtualizarCarroActivity : AppCompatActivity() {
             finish()
         }
         
-        btn_salvar_carrro.setOnClickListener { 
+        btn_finalizar.setOnClickListener {
             salvarDados()
         }
     }
