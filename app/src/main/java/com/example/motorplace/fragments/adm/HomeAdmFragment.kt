@@ -38,6 +38,9 @@ class HomeAdmFragment : Fragment() {
     private lateinit var valorProduto: TextView
     private lateinit var custoProdutos: TextView
     private lateinit var lucroProdutos: TextView
+
+    private lateinit var porcentagemProduto : TextView
+    private lateinit var porcentagemServico : TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +50,9 @@ class HomeAdmFragment : Fragment() {
 
         servicosRecuperados =  FirebaseDatabase.getInstance().reference.child("servicos")
         produtosRecuperados =  FirebaseDatabase.getInstance().reference.child("compras")
+
+        porcentagemProduto = view.findViewById(R.id.porcentagem_produto)
+        porcentagemServico = view.findViewById(R.id.porcentagem)
 
 
         progressServicos = view.findViewById(R.id.progressCompleted)
@@ -102,7 +108,7 @@ class HomeAdmFragment : Fragment() {
 
                     var perce = getPercentage(somaProduto - somaCustoProduto,somaProduto);
 
-                    porcentagem_produto.text = perce.toString().substring(0,5)+"%"
+                    porcentagemProduto.text = perce.toString().substring(0,5)+"%"
 
                     progressProdutos.setProgress(Math.round(perce));
                     Collections.reverse(produtos)
@@ -155,7 +161,7 @@ class HomeAdmFragment : Fragment() {
                                             var perce = getPercentage(soma - somaCusto,soma);
 
 
-                                            porcentagem.text = perce.toString().substring(0,5)+"%"
+                                            porcentagemServico.text = perce.toString().substring(0,5)+"%"
 
                                             progressServicos.setProgress(Math.round(perce));
                                             Collections.reverse(servicos)
